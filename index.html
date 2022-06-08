@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- <script defer src="others/alpine.js"></script> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KQ4KMVJEXY"></script>
@@ -20,27 +19,18 @@
     <title>Shadowmere</title>
 </head>
 
-<!-- $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&page=')).json() -->
-<!-- $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&page=' + pageCounter.toString())).json() -->
-<!-- for (prox in Object.values($store.comps.proxies.results)) {
-        arregloNoDupli.fill({countryCode: prox.location_country_code, countryName: searchCountries(prox.location_country_code).name.common})
-    } -->
-
-    <!-- countryNames = await (await fetch('https://restcountries.com/v3.1/alpha/' + code)).json() -->
-
 <body class=" overflow-y-scroll bg-[#F8F8F8] dark:bg-[#141414]" x-data="{selectedCountry: 'UN', codes: null, codeString: null, pageCounter: 1, count: 1, temp: '', atTop: true, loader: true }" x-init="
     
     $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json()
 
     codes = await (await fetch('https://shadowmere.akiel.dev/api/country-codes')).json()
     
-    console.log(selectedCountry)
+    console.log(codes)
     
     $store.comps.menu = 'servers'
     
     loader = false
 " x-bind:class="($store.comps.notTouchBgCountries || $store.comps.notTouchBgServers || $store.comps.notTouchBgMenuMobile || $store.comps.notTouchBgQR) && 'pointer-events-none relative overflow-hidden' ">
-<!-- x-bind:class="($store.comps.notTouchBgCountries || $store.comps.notTouchBgServers || $store.comps.notTouchBgMenuMobile || $store.comps.notTouchBgQR) && 'pointer-events-none relative overflow-hidden' " -->
     <div class="loader-screen w-full h-full top-0 z-[90] bg-white dark:bg-[#141414] fixed flex items-center justify-center" x-show="darkMode && loader" x-transition>
         <lottie-player src="./others/logo-animation-2-dark.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
     </div>
@@ -48,8 +38,6 @@
     <div class="loader-screen w-full h-full top-0 z-[90] bg-white dark:bg-[#141414] fixed flex items-center justify-center " x-show="!darkMode && loader" x-transition>
         <lottie-player src="./others/logo-animation-2.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
     </div>
-    <!-- <div class="test w-full h-screen bg-white fixed top-0 z-50 flex items-center justify-center"><svg class="w-24 h-24 transition-all" id="e5Oo2NKnk791" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 64 64" shape-rendering="geometricPrecision" text-rendering="geometricPrecision"><style><![CDATA[#e5Oo2NKnk792_tr {animation: e5Oo2NKnk792_tr__tr 4500ms linear infinite normal forwards}@keyframes e5Oo2NKnk792_tr__tr { 0% {transform: translate(35.127672px,9.046257px) rotate(0deg)} 46.666667% {transform: translate(35.127672px,9.046257px) rotate(0deg)} 51.111111% {transform: translate(35.127672px,9.046257px) rotate(15deg)} 80% {transform: translate(35.127672px,9.046257px) rotate(15deg)} 100% {transform: translate(35.127672px,9.046257px) rotate(15deg)}} #e5Oo2NKnk792 {animation: e5Oo2NKnk792_c_o 4500ms linear infinite normal forwards}@keyframes e5Oo2NKnk792_c_o { 0% {opacity: 0} 13.333333% {opacity: 0} 17.777778% {opacity: 1} 80% {opacity: 1} 88.888889% {opacity: 0} 100% {opacity: 0}} #e5Oo2NKnk793_tr {animation: e5Oo2NKnk793_tr__tr 4500ms linear infinite normal forwards}@keyframes e5Oo2NKnk793_tr__tr { 0% {transform: translate(43.412671px,13.761257px) rotate(0deg)} 53.333333% {transform: translate(43.412671px,13.761257px) rotate(0deg)} 57.777778% {transform: translate(43.412671px,13.761257px) rotate(15deg)} 80% {transform: translate(43.412671px,13.761257px) rotate(15deg)} 100% {transform: translate(43.412671px,13.761257px) rotate(15deg)}} #e5Oo2NKnk793 {animation: e5Oo2NKnk793_c_o 4500ms linear infinite normal forwards}@keyframes e5Oo2NKnk793_c_o { 0% {opacity: 0} 20% {opacity: 0} 24.444444% {opacity: 1} 80% {opacity: 1} 88.888889% {opacity: 0} 100% {opacity: 0}} #e5Oo2NKnk794_tr {animation: e5Oo2NKnk794_tr__tr 4500ms linear infinite normal forwards}@keyframes e5Oo2NKnk794_tr__tr { 0% {transform: translate(50.407673px,22.326257px) rotate(0deg)} 60% {transform: translate(50.407673px,22.326257px) rotate(0deg)} 64.444444% {transform: translate(50.407673px,22.326257px) rotate(15deg)} 80% {transform: translate(50.407673px,22.326257px) rotate(15deg)} 100% {transform: translate(50.407673px,22.326257px) rotate(15deg)}} #e5Oo2NKnk794 {animation: e5Oo2NKnk794_c_o 4500ms linear infinite normal forwards}@keyframes e5Oo2NKnk794_c_o { 0% {opacity: 0} 26.666667% {opacity: 0} 31.111111% {opacity: 1} 80% {opacity: 1} 88.888889% {opacity: 0} 100% {opacity: 0}} #e5Oo2NKnk795_tr {animation: e5Oo2NKnk795_tr__tr 4500ms linear infinite normal forwards}@keyframes e5Oo2NKnk795_tr__tr { 0% {transform: translate(53.592673px,31.638139px) rotate(0deg)} 66.666667% {transform: translate(53.592673px,31.638139px) rotate(0deg)} 71.111111% {transform: translate(53.592673px,31.638139px) rotate(15deg)} 80% {transform: translate(53.592673px,31.638139px) rotate(15deg)} 100% {transform: translate(53.592673px,31.638139px) rotate(15deg)}} #e5Oo2NKnk795 {animation: e5Oo2NKnk795_c_o 4500ms linear infinite normal forwards}@keyframes e5Oo2NKnk795_c_o { 0% {opacity: 0} 33.333333% {opacity: 0} 37.777778% {opacity: 1} 80% {opacity: 1} 88.888889% {opacity: 0} 100% {opacity: 0}} #e5Oo2NKnk796_tr {animation: e5Oo2NKnk796_tr__tr 4500ms linear infinite normal forwards}@keyframes e5Oo2NKnk796_tr__tr { 0% {transform: translate(53.292673px,40.793136px) rotate(0deg)} 73.333333% {transform: translate(53.292673px,40.793136px) rotate(0deg)} 77.777778% {transform: translate(53.292673px,40.793136px) rotate(15deg)} 80% {transform: translate(53.292673px,40.793136px) rotate(15deg)} 100% {transform: translate(53.292673px,40.793136px) rotate(15deg)}} #e5Oo2NKnk796 {animation: e5Oo2NKnk796_c_o 4500ms linear infinite normal forwards}@keyframes e5Oo2NKnk796_c_o { 0% {opacity: 0} 40% {opacity: 0} 44.444444% {opacity: 1} 80% {opacity: 1} 88.888889% {opacity: 0} 100% {opacity: 0}} #e5Oo2NKnk797 {animation: e5Oo2NKnk797_c_o 4500ms linear infinite normal forwards}@keyframes e5Oo2NKnk797_c_o { 0% {opacity: 0;animation-timing-function: cubic-bezier(0.42,0,1,1)} 4.444444% {opacity: 1} 80% {opacity: 1} 88.888889% {opacity: 0} 100% {opacity: 0}} #e5Oo2NKnk798 {animation: e5Oo2NKnk798_c_o 4500ms linear infinite normal forwards}@keyframes e5Oo2NKnk798_c_o { 0% {opacity: 0} 6.666667% {opacity: 0} 11.111111% {opacity: 1} 80% {opacity: 1} 88.888889% {opacity: 0} 100% {opacity: 0}}]]></style><g id="e5Oo2NKnk792_tr" transform="translate(35.127672,9.046257) rotate(0)"><polygon id="e5Oo2NKnk792" points="22.94,6.7 25.02,1.94 30.01,1.08 36.35,0 27.73,5.21 22.94,6.7" transform="translate(-29.645,-3.35)" opacity="0" fill="#231f20"/></g><g id="e5Oo2NKnk793_tr" transform="translate(43.412671,13.761257) rotate(0)"><polygon id="e5Oo2NKnk793" points="30.97,9.13 35.27,5.51 44.89,7.08 34.01,10.62 30.97,9.13" transform="translate(-37.929999,-8.065)" opacity="0" fill="#231f20"/></g><g id="e5Oo2NKnk794_tr" transform="translate(50.407673,22.326257) rotate(0)"><polygon id="e5Oo2NKnk794" points="37.72,15.12 43.02,13.54 52.13,19.72 42.21,17.95 37.72,15.12" transform="translate(-44.925001,-16.63)" opacity="0" fill="#231f20"/></g><g id="e5Oo2NKnk795_tr" transform="translate(53.592673,31.638139) rotate(0)"><polygon id="e5Oo2NKnk795" points="43.09,25.01 46.39,23.95 53.13,27.68 46.2,26.96 43.09,25.01" transform="translate(-48.110001,-25.815001)" opacity="0" fill="#231f20"/></g><g id="e5Oo2NKnk796_tr" transform="translate(53.292673,40.793136) rotate(0)"><polygon id="e5Oo2NKnk796" points="44.63,33.44 47.55,33.69 50.99,36.5 47.42,35.54 44.63,33.44" transform="translate(-47.810001,-34.969999)" opacity="0" fill="#231f20"/></g><path id="e5Oo2NKnk797" d="M42.27,23.82l-13-15.26-10-1.82l1-4.83-3.16,2.63-7.47,6L0,31.33l.29,1.55L1,33l1.71,2.61l2.53-.46l4-4l10.81-4.39-.6-5.54l1.81,5.66-5.19,7.39-3.52,10.36l6.6,3.93l2.34.65l1,1.35l3.14,1.87L46.3,40.5ZM14.52,15.49l-1.78,2.59-1.7.84l1-2.31.7-1.09L14.1,15v0l1.38-1.12Z" transform="translate(5.387328 5.746863)" opacity="0" fill="#231f20"/><polygon id="e5Oo2NKnk798" points="13.8,3.45 12.1,3.13 11.98,4.96 10,4.4 9.92,5.78 4.25,4.93 9.78,8.19 15.26,3.69 15.35,1.02 13.8,3.45" transform="translate(5.482672 5.696256)" opacity="0" fill="#231f20"/></svg></div> -->
-
     <nav class="w-full h-20 z-50 top-0 fixed flex justify-center bg-white dark:bg-[#212121] transition-transform shadow-lg">
         <div class="nav-wrapper container mx-auto dark:bg-[#212121] w-full h-full flex items-center justify-between px-4">
             <svg class="fill-[#303030] dark:fill-[#cfcfcf] w-[200px] h-auto cursor-pointer" x-on:click="$store.comps.listaHome = true, $store.comps.about = false, $store.comps.why = false, $store.comps.menu= 'servers', pageCounter = 1, $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json(), count = 1, selectedCountry = 'UN'" width="260" height="50" viewBox="0 0 260 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -97,7 +85,6 @@
 
                 <span class="dark:text-[#303030] font-medium">Fork me on GitHub</span>
                 </button>
-
                 <button id="toggle" class="custom-toggle w-auto h-auto cursor-pointer" :value="darkMode" @click="darkMode = !darkMode, isDarkLoader = !isDarkLoader">
                     <div class="toggle-light dark:hidden w-auto h-auto rounded-md flex items-center justify-center cursor-pointer ">
                         <svg class="w-6 h-6 hover:rotate-[-15deg] transition-transform fill-[#303030] cursor-pointer" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -117,9 +104,6 @@
                         </svg>
                     </div>
                 </button>
-
-                <!-- <input id="toggle" type="checkbox" class="transition-colors border-0 w-14 h-14 before:content-['A'] before:bg-[url('../imgs/icon-dark.svg')] before:bg-no-repeat before:bg-contain before:absolute before:z-10 before:flex before:items-center " :value="darkMode"
-                    @change="darkMode = !darkMode"> -->
                 <div class="menu hidden lg:flex flex-row-reverse gap-2 items-center">
                     <button class="text- dark:text-[#cfcfcf] font-medium w-auto h-12 flex items-center justify-center px-5 rounded-md hover:bg-[#EBEBEB] active:bg-[#D7D7D7] dark:hover:bg-[#1B1B1B] dark:active:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]"
                         x-on:click="$store.comps.why = true, $store.comps.about = false, $store.comps.listaHome = false">
@@ -129,7 +113,6 @@
                     <button class="text-base dark:text-[#cfcfcf] font-medium w-auto h-12 flex items-center justify-center px-5 rounded-md hover:bg-[#EBEBEB] active:bg-[#D7D7D7] dark:hover:bg-[#1B1B1B] dark:active:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]"
                         onclick="location.href='https://shadowsocks.org/en/download/clients.html'">VPN Clients</button>
 
-                    <!-- $store.comps.menu = 'about' -->
                     <button class="text-base dark:text-[#cfcfcf] font-medium w-auto h-12 flex items-center justify-center px-5 rounded-md hover:bg-[#EBEBEB] active:bg-[#D7D7D7] dark:hover:bg-[#1B1B1B] dark:active:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]"
                         x-on:click="$store.comps.about = true, $store.comps.listaHome = false, $store.comps.why = false">About</button> 
                     
@@ -210,11 +193,14 @@
                         <span>Esto es de los servers</span>
                         <hr class="w-full h-px border-[#303030] dark:border-[#cfcfcf]">
                     </div>
-                    <!-- <template x-for="item in Object.values(proxies.results)">
-                <button class=" w-full h-14 text-[#303030] dark:text-[#cfcfcf] font-medium gap-4 flex flex-col items-center justify-center bg-white active:bg-[#EBEBEB]"  :class="$store.comps.serversonline && 'hidden'" x-init="$store.comps.stringPaises = item.location">
-                    <div class="font-twemoji select-none overflow-y-scroll" x-text="getFlagEmoji(item.location_country_code) + ' '+ item.location"></div>
-                </button>
-                </template> -->
+                    <template x-for="item in codes">
+                        <button class=" w-full h-14 text-[#303030] dark:text-[#cfcfcf] font-medium gap-4 flex flex-col items-center justify-center snap-start active:bg-[#303030]" x-on:click="selectedCountry = item.code, $store.comps.listaHome = true, $store.comps.about = false, $store.comps.why = false, pageCounter = 1, selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + selectedCountry + '&page=' + pageCounter.toString())).json(), $store.comps.modal2 = false, $store.comps.notTouchBgCountries = false, count = 1">
+                            <div class="flex gap-2 w-full items-center justify-center">
+                                <div class="font-twemoji text-xl select-none overflow-y-scroll" x-text="getFlagEmoji(item.code)+ ' '+ item.name"></div>
+                                <!-- <div class="font-twemoji select-none" x-text="' '+ item.name"></div> -->
+                            </div>
+                        </button>
+                </template>
                 </div>
             </div>
         </div>
@@ -225,7 +211,7 @@
             x-on:click.outside="$store.comps.modal2 = false, $store.comps.notTouchBgCountries = false" x-transition:enter="translate-y-64" x-transition:leave="translate-y-64">
             <div class="w-full h-auto flex flex-col items-center justify-between mt-6 overflow-y-scroll snap-y">
                 <div class="w-full h-auto flex flex-col items-center justify-between">
-                    <template x-for="item in codeString">
+                    <template x-for="item in codes">
                     <button class=" w-full h-14 text-[#303030] dark:text-[#cfcfcf] font-medium gap-4 flex flex-col items-center justify-center snap-start active:bg-[#303030]" x-init="$store.comps.stringPaises = item.code" x-on:click="selectedCountry = item.code, $store.comps.listaHome = true, $store.comps.about = false, $store.comps.why = false, pageCounter = 1, selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + selectedCountry + '&page=' + pageCounter.toString())).json(), $store.comps.modal2 = false, $store.comps.notTouchBgCountries = false, count = 1">
                         <div class="flex gap-2 w-full items-center justify-center">
                             <div class="font-twemoji text-xl select-none overflow-y-scroll" x-text="getFlagEmoji(item.code)"></div>
@@ -246,12 +232,6 @@
         <h1 class="dark:text-white">Click or tap anywhere on the screen to close it</h1>
     </div>
     
-    
-    
-    <!-- <div class="back-black w-full h-screen bg-black opacity-30 z-10 fixed transition-opacity" x-show="$store.comps.blackScreen"></div> -->
-    <!-- <div class="back-black w-full h-screen bg-black opacity-30 z-10 fixed transition-opacity"></div> -->
-
-
     <!-- Este es el container general -->
     <main class="wrapper container mx-auto w-full h-full xl:h-full grid grid-cols-12 auto-rows-auto mb-16 2xl:mb-0 mt-20 py-6 xl:py-8 gap-[30px] px-4 pb-4">
 

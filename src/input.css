@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer base {
     [x-cloak] {
         display: none
@@ -11,6 +10,7 @@
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 150ms;
     }
+   
     html {
         -webkit-tap-highlight-color: transparent;
     }
@@ -23,23 +23,20 @@
         -webkit-appearance: none;
         pointer-events: none;
     }
-
-    @font-face {
-        font-family: "Twemoji";
-        src: url("fonts/twemoji.woff2");
-        size-adjust: 120%;
-    }
-    
-    @font-face {
-        font-family: "FontAwesome";
-        src: url("./fonts/fa-regular-400.eot") format("eot"),
-            url("./fonts/fa-regular-400.svg") format("svg"),
-            url("./fonts/fa-regular-400.ttf") format("truetype"),
-            url("./fonts/fa-regular-400.woff") format("woff"),
-            url("./fonts/fa-regular-400.woff2") format("woff2");
-            font-weight: 400;
-    }
 }
 
+@font-face {
+    font-family: "Twemoji";
+    src: url("./fonts/twemoji.woff2") format("woff2");
+    size-adjust: 120%;
+}
 
-
+@font-face {
+	font-family: "FontAwesome";
+	src: url("./fonts/fa-regular-400.eot") format("eot"),
+		url("./fonts/fa-regular-400.svg") format("svg"),
+		url("./fonts/fa-regular-400.ttf") format("truetype"),
+		url("./fonts/fa-regular-400.woff") format("woff"),
+		url("./fonts/fa-regular-400.woff2") format("woff2");
+        font-weight: 400;
+}
