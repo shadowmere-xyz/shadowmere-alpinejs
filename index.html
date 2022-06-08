@@ -180,27 +180,28 @@
                 </button>
             </div>
             <div class="slider-div w-full h-[3px] px-6 flex justify-start">
-                <input title="none" type="range" name="" disabled id="rangeSld" min="1" max="4" step="1" x-transition:enter=" transition-transform ease-in-out" class="w-full appearance-none bg-transparent accent-[#303030] dark:accent-[#cfcfcf]" x-model="$store.comps.rangeValue">
+                <input title="none" type="range" name="" disabled id="rangeSld" min="1" max="4" step="1" x-transition:enter=" transition-transform ease-in-out" x-show="darkMode" class=" range-dark w-full appearance-none bg-transparent accent-[#303030] dark:accent-[#cfcfcf]" x-model="$store.comps.rangeValue">
+                <input title="none" type="range" name="" disabled id="rangeSld" min="1" max="4" step="1" x-transition:enter=" transition-transform ease-in-out" x-show="!darkMode" class=" range-light w-full appearance-none bg-transparent accent-[#303030] dark:accent-[#cfcfcf]" x-model="$store.comps.rangeValue">
             </div>
         </div>
     </nav>
     <div class="modal-servers w-full h-screen bg-black/50 z-[40] fixed top-0" x-show="$store.comps.modal1" x-transition:enter="opacity-30 ease-in-out duration-[70ms] " x-transition:leave="opacity-100 ease-in-out duration-[70ms] ">
         <div class="panel-bottom fixed w-full h-60 rounded-t-2xl overflow-hidden pointer-events-auto bg-white dark:bg-[#212121] bottom-16 transition-transform ease-in-out duration-150 right-0 z-50 lg:hidden flex flex-col items-center justify-between" x-show="$store.comps.modal1"
             x-on:click.outside="$store.comps.modal1 = false,  $store.comps.notTouchBgServers = false" x-transition:enter="translate-y-60" x-transition:leave="translate-y-60">
-            <div class="w-full h-auto flex flex-col items-center pt-2">
-                <div class="w-full h-auto flex flex-col items-center justify-between">
-                    <div class=" w-full text-[#303030] dark:text-[#cfcfcf] font-medium gap-4 flex flex-col items-center justify-center">
-                        <span>Esto es de los servers</span>
-                        <hr class="w-full h-px border-[#303030] dark:border-[#cfcfcf]">
+            <div class="w-full h-full flex flex-col items-center pt-2">
+                <div class="w-full h-full flex flex-col items-center justify-between">
+                    <div class=" w-full h-full text-[#303030] dark:text-[#cfcfcf] font-medium gap-4 flex flex-col items-center justify-center">
+                        <span>Coming soon...</span>
+                        <!-- <hr class="w-full h-px border-[#303030] dark:border-[#cfcfcf]"> -->
                     </div>
-                    <template x-for="item in codes">
+                    <!-- <template x-for="item in codes">
                         <button class=" w-full h-14 text-[#303030] dark:text-[#cfcfcf] font-medium gap-4 flex flex-col items-center justify-center snap-start active:bg-[#303030]" x-on:click="selectedCountry = item.code, $store.comps.listaHome = true, $store.comps.about = false, $store.comps.why = false, pageCounter = 1, selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + selectedCountry + '&page=' + pageCounter.toString())).json(), $store.comps.modal2 = false, $store.comps.notTouchBgCountries = false, count = 1">
                             <div class="flex gap-2 w-full items-center justify-center">
                                 <div class="font-twemoji text-xl select-none overflow-y-scroll" x-text="getFlagEmoji(item.code)+ ' '+ item.name"></div>
-                                <!-- <div class="font-twemoji select-none" x-text="' '+ item.name"></div> -->
+                                <div class="font-twemoji select-none" x-text="' '+ item.name"></div>
                             </div>
                         </button>
-                </template>
+                </template> -->
                 </div>
             </div>
         </div>
