@@ -325,7 +325,7 @@
                 <div class="data-operations gap-4 flex flex-row-reverse items-center" >
                     
 
-                    <button title="Copiar al Portapapeles" class="opt-copiar relative w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]" x-on:click="navigator.clipboard.writeText(proxy.url+'#'+encodeURI(proxy.location)), timeCopy = true">
+                    <button title="Copy" class="opt-copiar relative w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]" x-on:click="navigator.clipboard.writeText(proxy.url+'#'+encodeURI(proxy.location)), timeCopy = true">
                         <div class="absolute w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center" x-show="timeCopy, setTimeout(() => { timeCopy = false }, 500)" x-transition.duration.200ms>
                             <svg class=" bg-transparent w-6 h-6 stroke-[#303030] dark:stroke-[#cfcfcf]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5 11.2L10.25 16L19 8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -336,7 +336,7 @@
                                 </svg> 
                     </button>
 
-                    <button title="Codigo QR" class="opt-codigo-qr w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]" x-on:click="$store.comps.qr_code = true, $store.comps.notTouchBgQR = true, $refs.image.src = 'https://shadowmere.akiel.dev/' + proxy.id.toString() + '/qr'">
+                    <button title="QR Code" class="opt-codigo-qr w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]" x-on:click="$store.comps.qr_code = true, $store.comps.notTouchBgQR = true, $refs.image.src = 'https://shadowmere.akiel.dev/' + proxy.id.toString() + '/qr'">
                         <svg class="fill-[#303030] dark:fill-[#cfcfcf] " width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_522_872)">
                                 <path d="M0.25 8.75H7.75V1.25H0.25V8.75ZM2.75 3.75H5.25V6.25H2.75V3.75ZM10.25 1.25V8.75H17.75V1.25H10.25ZM15.25 6.25H12.75V3.75H15.25V6.25ZM0.25 18.75H7.75V11.25H0.25V18.75ZM2.75 13.75H5.25V16.25H2.75V13.75ZM16.5 11.25H17.75V16.25H14V15H12.75V18.75H10.25V11.25H14V12.5H16.5V11.25ZM16.5 17.5H17.75V18.75H16.5V17.5ZM14 17.5H15.25V18.75H14V17.5Z"/>
@@ -350,7 +350,7 @@
                     </button>
 
                     <a x-bind:href="'https://shadowmere.akiel.dev/' + proxy.id + '/config'">
-                    <button title="Descargar archivo de configuración" class="opt-descargar w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]">
+                    <button title="Download" class="opt-descargar w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]">
                         <svg class="fill-[#303030] dark:fill-[#cfcfcf]" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M18.75 13.75H13.5352L11.7676 15.5176C11.2969 15.9883 10.668 16.25 10 16.25C9.33203 16.25 8.70469 15.99 8.23242 15.5176L6.46484 13.75H1.25C0.559766 13.75 0 14.3098 0 15V18.75C0 19.4402 0.559766 20 1.25 20H18.75C19.4402 20 20 19.4402 20 18.75V15C20 14.3086 19.4414 13.75 18.75 13.75ZM16.875 17.8125C16.3594 17.8125 15.9375 17.3906 15.9375 16.875C15.9375 16.3594 16.3594 15.9375 16.875 15.9375C17.3906 15.9375 17.8125 16.3594 17.8125 16.875C17.8125 17.3906 17.3906 17.8125 16.875 17.8125ZM9.11719 14.6328C9.35938 14.8789 9.67969 15 10 15C10.3203 15 10.6398 14.8779 10.8836 14.6338L15.8836 9.63379C16.3715 9.14551 16.3715 8.35449 15.8836 7.86621C15.3953 7.37793 14.6039 7.37793 14.116 7.86621L11.25 10.7344V1.25C11.25 0.559766 10.6902 0 10 0C9.30859 0 8.75 0.559766 8.75 1.25V10.7344L5.88281 7.86719C5.39492 7.37891 4.60352 7.37891 4.11523 7.86719C3.62734 8.35547 3.62734 9.14648 4.11523 9.63477L9.11719 14.6328Z"/>
                                 </svg>
