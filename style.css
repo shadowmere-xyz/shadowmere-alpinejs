@@ -1793,10 +1793,6 @@ html {
     display: flex;
   }
 
-  .xl\:hidden {
-    display: none;
-  }
-
   .xl\:h-full {
     height: 100%;
   }
