@@ -325,7 +325,7 @@
                 <div class="data-operations gap-4 flex flex-row-reverse items-center" >
                     
 
-                    <button title="Copiar al Portapapeles" class="opt-copiar relative w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]" x-on:click="navigator.clipboard.writeText(proxy.url), timeCopy = true">
+                    <button title="Copiar al Portapapeles" class="opt-copiar relative w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]" x-on:click="navigator.clipboard.writeText(proxy.url+'#'+encodeURI(proxy.location)), timeCopy = true">
                         <div class="absolute w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center" x-show="timeCopy, setTimeout(() => { timeCopy = false }, 500)" x-transition.duration.200ms>
                             <svg class=" bg-transparent w-6 h-6 stroke-[#303030] dark:stroke-[#cfcfcf]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M5 11.2L10.25 16L19 8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
