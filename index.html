@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="./imgs/logo.svg" sizes="any"/>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -151,7 +152,7 @@
         </div>
     </div>
 
-    <nav class="sidebar-mobile-docked xl:hidden w-full h-16 py-2 pointer-events-auto bg-white fixed z-[50] dark:bg-[#212121] bottom-0 flex justify-center" :class="!$store.comps.shadownav && 'shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.05)]'">
+    <nav class="sidebar-mobile-docked hidden w-full h-16 py-2 pointer-events-auto bg-white fixed z-[50] dark:bg-[#212121] bottom-0 flex justify-center" :class="!$store.comps.shadownav && 'shadow-[0_-10px_15px_-3px_rgba(0,0,0,0.05)]'">
         <div class="container mx-auto h-auto flex flex-col items-center">
             <div class="w-full h-10 px-4 flex items-center justify-between">
                 <button class="home w-8 h-10 flex flex-col items-center justify-end mb-2" x-on:click="$store.comps.listaHome = true, $store.comps.about = false, $store.comps.why = false, $store.comps.marker = !$store.comps.marker, $store.comps.rangeValue = 1, pageCounter = 1, $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json(), count = 1">
@@ -236,7 +237,7 @@
     <!-- Este es el container general -->
     <main class="wrapper container mx-auto w-full h-full xl:h-full grid grid-cols-12 auto-rows-auto mb-16 2xl:mb-0 mt-20 py-6 xl:py-8 gap-[30px] px-4 pb-4">
 
-        <div class="sidebar col-span-12 xl:col-span-3 w-auto h-auto 2xl:h-fit mb-4 bg-white dark:bg-[#212121] dark:text-[#cfcfcf] shadow-lg xl:flex flex-col-reverse xl:flex-col gap-8 p-4 rounded-lg" :class="!$store.comps.last && 'hidden'">
+        <div class="sidebar col-span-12 xl:col-span-3 w-auto h-auto 2xl:h-fit mb-4 bg-white dark:bg-[#212121] dark:text-[#cfcfcf] shadow-lg xl:flex flex-col-reverse xl:flex-col gap-8 p-4 rounded-lg">
             <div class="online-vpns-filter flex flex-col gap-4">
                 <div class="w-full h-6 flex items-center font-semibold gap-2">
                     <svg class="fill-[#303030] dark:fill-[#cfcfcf]" width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
