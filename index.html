@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="en" x-data="{ darkMode: true }" x-cloak x-init="darkMode = JSON.parse(localStorage.getItem('darkMode')); $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value))) darkMode = true " :class="{'dark': darkMode === true}">
+<html lang="en" x-data="{ darkMode: false }" x-cloak x-init="
+
+darkMode = !JSON.parse(localStorage.getItem('darkMode')) 
+$watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value))) 
+
+" :class="{'dark': darkMode === true}">
 
 <head>
     <meta charset="UTF-8">
