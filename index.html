@@ -318,6 +318,11 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                 </div>
             </div>
 
+            <div class="flex gap-2">
+                <h2 class="font-bold text-white">Disclaimer:</h2>
+                <p class="text-white">This website is only a list of tunnels collected all around internet. We do NOT provide or maintain any of these tunnels. <span class="bg-red-600 text-white">Use them at your own risk.</span></p>
+            </div>
+
             <template x-for="proxy in Object.values($store.comps.proxies.results)" :key="proxy.id">
             
             <div class="item-server-vpn w-full h-20 sm:h-24 bg-white dark:bg-[#212121] dark:text-[#cfcfcf] rounded-lg shrink-0 flex items-center justify-between px-4 md:px-8 py-2 shadow-lg hover:cursor-pointer hover:-translate-y-[2px] dark:hover:bg-[#303030] hover:bg-[#FDFDFD] transition-all " x-show="showItemServer" x-data="{timeCopy: false}">
