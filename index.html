@@ -317,11 +317,9 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                     </button>
                 </div>
             </div>
-
-            <div class="flex gap-2">
-                <h2 class="font-bold text-white">Disclaimer:</h2>
-                <p class="text-white">This website is only a list of tunnels collected all around internet. We do NOT provide or maintain any of these tunnels. <span class="bg-red-600 text-white">Use them at your own risk.</span></p>
-            </div>
+                
+            <p class="text-white"><span class="font-bold text-white">Disclaimer: </span>This website is only a list of tunnels collected all around internet. We do NOT provide or maintain any of these tunnels. <span class="bg-red-600 text-white">Use them at your own risk.</span></p>
+        
 
             <template x-for="proxy in Object.values($store.comps.proxies.results)" :key="proxy.id">
             
