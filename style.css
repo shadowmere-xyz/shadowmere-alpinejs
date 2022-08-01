@@ -1764,6 +1764,12 @@ html {
     gap: 1rem;
   }
 
+  .md\:truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .md\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
