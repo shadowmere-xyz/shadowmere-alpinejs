@@ -23,6 +23,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     <script src="https://cdn.websitepolicies.io/lib/cookieconsent/1.0.3/cookieconsent.min.js" defer=""></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.websitepolicies.io/lib/cookieconsent/1.0.3/cookieconsent.min.css">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
     <title>Shadowmere</title>
 </head>
@@ -34,6 +35,8 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     codes = await (await fetch('https://shadowmere.akiel.dev/api/country-codes')).json()
     
     console.log(codes)
+
+    moment().format('MMMM Do YYYY, h:mm:ss a')
     
     $store.comps.menu = 'servers'
     
@@ -269,7 +272,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                 </div>
                 <div class="w-full h-6 flex items-center font-semibold gap-2 pl-4">
 
-                    <span class="font-normal" x-text="$store.comps.proxies.results[1].last_checked"></span>
+                    <span class="font-normal" x-text="moment($store.comps.proxies.results[1].last_checked).format('MMMM Do YYYY, h:mm:ss a')"></span>
                 </div>
             </div>
 

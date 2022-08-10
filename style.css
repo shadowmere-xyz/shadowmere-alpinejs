@@ -980,10 +980,6 @@ html {
   width: 90px;
 }
 
-.w-28 {
-  width: 7rem;
-}
-
 .w-4 {
   width: 1rem;
 }
@@ -1762,12 +1758,6 @@ html {
 @media (min-width: 768px) {
   .md\:gap-4 {
     gap: 1rem;
-  }
-
-  .md\:truncate {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   .md\:px-8 {
