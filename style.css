@@ -1126,6 +1126,14 @@ html {
   gap: 2rem;
 }
 
+.gap-12 {
+  gap: 3rem;
+}
+
+.gap-3 {
+  gap: 0.75rem;
+}
+
 .overflow-auto {
   overflow: auto;
 }
@@ -1795,6 +1803,10 @@ html {
 
   .xl\:flex-col {
     flex-direction: column;
+  }
+
+  .xl\:gap-4 {
+    gap: 1rem;
   }
 
   .xl\:py-8 {
