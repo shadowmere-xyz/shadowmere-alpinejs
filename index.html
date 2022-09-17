@@ -28,13 +28,22 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     <title>Shadowmere</title>
 </head>
 
-<body class=" overflow-y-scroll bg-[#F8F8F8] dark:bg-[#141414]" x-data="{selectedCountry: 'UN', codes: null, codeString: null, pageCounter: 1, count: 1, temp: '', atTop: true, loader: true }" x-init="
+<body class=" overflow-y-scroll bg-[#F8F8F8] dark:bg-[#141414]" x-data="{selectedCountry: 'UN', selectedPort: 'Any', codes: null, ports: null, codeString: null, pageCounter: 1, count: 1, temp: '', atTop: true, loader: true }" x-init="
     
     $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json()
 
     codes = await (await fetch('https://shadowmere.akiel.dev/api/country-codes')).json()
+
+    codes.unshift({
+        'code': 'UN',
+        'name': 'Worldwide'
+    })
+
+    ports = await (await fetch('https://shadowmere.akiel.dev/api/ports')).json()
+
+    ports.unshift('Any')
     
-    console.log(codes)
+    console.log(selectedPort)
 
     moment().format('MMMM Do YYYY, h:mm:ss a')
     
@@ -291,8 +300,10 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                         <option id="opcion" class="bandera" x-ref="opt" :value="code.code" x-text="getFlagEmoji(code.code) + ' ' + code.name"></option>
                     </template>
                 </select>
-
             </div>
+
+            
+
         </div>
 
 
