@@ -163,6 +163,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                     </button>
                 
                     <button class="text-base dark:text-[#cfcfcf] font-medium w-full h-12 flex items-center justify-center px-5 rounded-md bg-[#EBEBEB] hover:bg-[#D7D7D7] dark:bg-[#1B1B1B] dark:hover:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]" x-on:click="$store.comps.why = true, $store.comps.about = false, $store.comps.listaHome = false, $store.comps.open = false">Why Shadowmere?</button>
+                    <button class="text-base dark:text-[#cfcfcf] font-medium w-full h-12 flex items-center justify-center px-5 rounded-md bg-[#EBEBEB] hover:bg-[#D7D7D7] dark:bg-[#1B1B1B] dark:hover:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]" onclick="location.href='https://shadowsocks5.github.io/en/download/clients.html'">VPN clients</button>
                     <button class="text-base dark:text-[#cfcfcf] font-medium w-full h-12 flex items-center justify-center px-5 rounded-md bg-[#EBEBEB] hover:bg-[#D7D7D7] dark:bg-[#1B1B1B] dark:hover:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]" x-on:click="$store.comps.about = true, $store.comps.listaHome = false, $store.comps.why = false, $store.comps.open = false">About</button>
                 </div>
                 <span class="font-twemoji align-baseline text-[#303030] dark:text-[#cfcfcf]">Made with ❤️ in Europe 🇪🇺 by Akiel</span>
@@ -281,7 +282,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                 </div>
                 <div class="w-full h-6 flex items-center font-semibold gap-2 pl-4">
 
-                    <span class="font-normal" x-text="moment($store.comps.proxies.results[1].last_checked).format('MMMM Do YYYY, h:mm:ss a')"></span>
+                    <span class="font-normal" x-text="moment($store.comps.proxies.results[0].last_checked).format('MMMM Do YYYY, h:mm:ss a')"></span>
                 </div>
             </div>
 
