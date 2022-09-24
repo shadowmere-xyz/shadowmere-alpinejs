@@ -360,7 +360,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                 <div class="data-country-ip gap-2 md:gap-4 flex items-center">
                     <div class="font-twemoji select-none flex items-center text-xl w-6 h-6 cursor-pointer" x-text="getFlagEmoji(proxy.location_country_code)" x-on:click="selectedCountry = proxy.location_country_code, pageCounter = 1, $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + selectedCountry + '&page=' + pageCounter.toString())).json(), count = 1"> </div>
                     <span class="w-12 h-6 flex items-center justify-center select-none bg-[#303030] dark:bg-[#cfcfcf] px-2 text-[#cfcfcf] dark:text-[#303030] font-medium text-xs sm:text-sm rounded" x-text="getPercentage(proxy.times_check_succeeded, proxy.times_checked).toString() + '%'"></span>
-                    <span class="font-semibold w-auto overflow-hidden truncate text-sm sm:text-base select-none" x-text="proxy.ip_address">...</span>
+                    <span class="font-semibold w-auto overflow-hidden truncate text-sm sm:text-base" x-text="proxy.ip_address">...</span>
                     <!-- <button x-on:click="$el.innerHTML = 'This is my own IP address' + proxy.ip_address ">Click Me</button> -->
                     
                 </div>
