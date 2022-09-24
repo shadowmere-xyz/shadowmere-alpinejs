@@ -166,4 +166,10 @@ const localArray = async (arr) => {
 	return codeString;
 };
 
+function watchDirectionDropdown() {
+	let pos = document.getElementById("test");
+	let rect = pos.getBoundingClientRect(); // position
+	return rect;
+}
+
 
