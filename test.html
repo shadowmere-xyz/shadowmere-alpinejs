@@ -232,6 +232,22 @@
                         }
                     </script>
                 </div>
+
+                <div id="swui-dropdown" class="h-10 bg-white border-[1px] border-[#d1d5db] dark:border-0 focus:dark:outline-1 active: dark:bg-[#303030] dark:hover:bg-[#3a3a3a] rounded-md cursor-pointer flex items-center justify-between p-2 pl-3 mx-2 dark:text-[#cfcfcf] text-[#303030] select-none" x-cloak x-data="{lista : false, isSelectedText: 'Ok', isSelected: true, isMobile: false, defaultItem: 'Any', posicion: true, recta: null}" x-on:click="lista = !lista, recta = $el.getBoundingClientRect(), console.log(window.innerWidth), (window.innerHeight - recta.bottom) < 256 ? posicion = false : posicion = true, window.innerWidth < 1024 ? isMobile = true : isMobile = false" x-bind:class="isMobile ? 'static' : 'relative'" x-on:click.outside="lista = false">
+                    <span class="w-auto" x-text="selectedPort"></span>
+                    <svg xmlns="http://ww.w3.org/2000/svg" class="" x-bind:class="lista ? 'rotate-180 transition-transform duration-300' : 'rotate-0 transition-transform duration-300'" width="24" height="24" viewBox="0 0 24 24" style="fill: #6b7280;"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
+
+                    <div class="absolute z-[160] w-full shadow-lg lg:border-[0.5px] lg:border-[#d1d5db] h-full lg:h-64 overflow-hidden right-0 lg:rounded-md" role="dialog" x-bind:class="posicion ? 'top-0 lg:max-h-64 lg:top-11' : 'bottom-0 lg:max-h-64 lg:bottom-11'" x-show="lista" x-transition @swipeleft="lista = false">
+                        <ul class="overflow-y-auto w-full h-full lg:h-64 right-0 bg-white dark:bg-[#303030] lg:rounded-md select-none snap-proximity">
+                            <template x-for="port in ports">
+                                <li class="hover:bg-blue-400 focus-within:bg-blue-400 after:content-[' '] after:w-full after:h-1 border-2 flex items-center justify-between w-full p-2" x-bind:class="isMobile ? 'text-xl h-20 px-4' : 'h-8'" x-on:click="isSelected = false, selectedPort = port.port, selectedPort === 'Any' ? portPagination = '' : portPagination = selectedPort, pageCounter = 1, selectedPort === 'Any' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true' + '&port=' + portPagination + '&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&port=' + portPagination + '&location_country_code=' + countryPagination + '&page=' + pageCounter.toString())).json(), cont = 1, isSelected = true">
+                                    <span x-text="port.port"></span>
+                                    <svgxmlns="http://www.w3.org/2000/svg" x-show="isSelected && (selectedPort == port.port)" class="fill-[#303030] dark:fill-[#cfcfcf]" width="24" height="24" viewBox="0 0 24 24"><path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path></svg>
+                                </li>
+                            </template>
+                        </ul>
+                    </div>
+                </div>
                 
 </body>
 </html>
