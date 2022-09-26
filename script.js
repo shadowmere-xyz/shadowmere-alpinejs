@@ -166,10 +166,11 @@ const localArray = async (arr) => {
 	return codeString;
 };
 
-function watchDirectionDropdown() {
-	let pos = document.getElementById("test");
-	let rect = pos.getBoundingClientRect(); // position
-	return rect;
-}
+// function watchDirectionDropdown(elem) {
+	// let pos = document.getElementById("swui-dropdown");
+	// let rect = pos.getBoundingClientRect(); // position
+// 	let rect = elem.getBoundingClientRect();
+// 	return rect;
+// }
 
 
