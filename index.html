@@ -24,6 +24,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     <link type="text/css" rel="stylesheet" href="https://cdn.websitepolicies.io/lib/cookieconsent/1.0.3/cookieconsent.min.css">
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 
     <title>Shadowmere</title>
 </head>
@@ -300,17 +301,24 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                 </select>
             </div> -->
 
-            <div id="swui-dropdown" class="relative h-10 bg-[#303030] hover:bg-[#3a3a3a] rounded-md cursor-pointer flex items-center justify-between p-2 pl-3 mx-2 text-[#cfcfcf]" x-cloak x-data="{lista : false, defaultItem: 'Any', posicion: true, recta: null}" x-on:click="lista = !lista, recta = $el.getBoundingClientRect(), console.log(recta), (window.innerHeight - recta.bottom) < 256 ? posicion = false : posicion = true, console.log(window.innerHeight - recta.bottom);" x-on:click.outside="lista = false" x-init="">
+            <div id="swui-dropdown" class="h-10 bg-[#303030] hover:bg-[#3a3a3a] rounded-md cursor-pointer flex items-center justify-between p-2 pl-3 mx-2 text-[#cfcfcf] select-none" x-cloak x-data="{lista : false, isSelectedText: 'Ok', isSelected: true, isMobile: false, defaultItem: 'Any', posicion: true, recta: null}" x-on:click="lista = !lista, recta = $el.getBoundingClientRect(), console.log(window.innerWidth), (window.innerHeight - recta.bottom) < 256 ? posicion = false : posicion = true, window.innerWidth < 1024 ? isMobile = true : isMobile = false" x-bind:class="isMobile ? 'static' : 'relative'" x-on:click.outside="lista = false">
                 <span class="w-auto" x-text="selectedPort"></span>
-                <svg xmlns="http://ww.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #6b7280;transform: ;msFilter:;"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
-                <div class=" absolute w-full h-auto max-h-64 right-0 overflow-hidden rounded-md bg-red-500" x-bind:class="posicion ? 'top-11' : 'bottom-11'">
-                    <ul class="overflow-y-auto z-10 w-full h-auto max-h-64 right-0 bg-white dark:bg-[#303030] rounded-md select-none" x-show="lista">
+                <svg xmlns="http://ww.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: #6b7280;"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
+                <div class="absolute z-[160] w-full h-full lg:h-64 overflow-hidden right-0 rounded-md" role="dialog" x-bind:class="posicion ? 'top-0 lg:max-h-64 lg:top-11' : 'bottom-0 lg:max-h-64 lg:bottom-11'" x-show="lista" @swipeleft="lista = false">
+                    <ul class="overflow-y-auto w-full h-full lg:h-64 right-0 bg-white dark:bg-[#303030] rounded-md select-none snap-proximity">
                         <template x-for="port in ports">
-                            <li class="text-black dark:text-[#cfcfcf] hover:bg-blue-400 flex items-center w-full h-8 p-2" x-text="port.port" x-on:click="selectedPort = port.port, selectedPort === 'Any' ? portPagination = '' : portPagination = selectedPort, pageCounter = 1, selectedPort === 'Any' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true' + '&port=' + portPagination + '&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&port=' + portPagination + '&location_country_code=' + countryPagination + '&page=' + pageCounter.toString())).json(), cont = 1"></li>
+                            <li class="text-black dark:text-[#cfcfcf] hover:bg-blue-400 focus-within:bg-blue-400 flex items-center justify-between w-full p-2" x-bind:class="isMobile ? 'text-xl h-20 px-4' : 'h-8'" x-on:click="isSelected = false, selectedPort = port.port, selectedPort === 'Any' ? portPagination = '' : portPagination = selectedPort, pageCounter = 1, selectedPort === 'Any' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true' + '&port=' + portPagination + '&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&port=' + portPagination + '&location_country_code=' + countryPagination + '&page=' + pageCounter.toString())).json(), cont = 1, isSelected = true">
+                                <span x-text="port.port" x-init="
+                                console.log(isSelected)
+                                "></span>
+                                <svg xmlns="http://www.w3.org/2000/svg" x-show="isSelected && (selectedPort == port.port)" class="fill-[#cfcfcf]" width="24" height="24" viewBox="0 0 24 24"><path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path></svg>
+                            </li>
                         </template>
                     </ul>
                 </div>
             </div>
+
+            
 
             <!-- <div class="w-full h-auto flex flex-wrap gap-2">
                 <template x-for="port in ports">
