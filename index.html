@@ -127,20 +127,29 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                         </svg>
                     </div>
                 </button>
-                <div class="menu hidden lg:flex flex-row-reverse gap-2 items-center">
+                <div class="menu relative hidden lg:flex flex-row-reverse gap-2 items-center">
+                    <button class="text- dark:text-[#cfcfcf] font-medium group w-auto h-12 flex items-center justify-center px-5 rounded-md hover:bg-[#EBEBEB] active:bg-[#D7D7D7] dark:hover:bg-[#1B1B1B] dark:active:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]"
+                        x-on:click="$store.comps.activeTab = 'support'">
+                        Support Us
+                        <!-- <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149.9 149.9"><defs><style>.cls-1{fill:#dc2626;}.cls-2{fill:#fff;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" width="149.9" height="149.9" rx="74.95"/><polygon class="cls-2" points="66.72 30.62 71.44 19.81 82.78 17.87 97.19 15.4 77.61 27.24 66.72 30.62"/><polygon class="cls-2" points="84.96 36.15 94.73 27.92 116.58 31.49 91.87 39.52 84.96 36.15"/><polygon class="cls-2" points="100.29 49.73 112.32 46.15 133.01 60.2 110.48 56.16 100.29 49.73"/><polygon class="cls-2" points="112.5 72.2 119.99 69.81 135.28 78.27 119.54 76.64 112.5 72.2"/><polygon class="cls-2" points="115.99 91.36 122.62 91.92 130.44 98.32 122.32 96.13 115.99 91.36"/><path class="cls-2" d="M110.62,69.51,81.14,34.85,58.46,30.71l2.38-11-7.37,6-17,13.67L14.62,86.56l.67,3.53,1.61.27,3.9,5.92,5.74-1L35.62,86l24.57-10L58.82,63.49l4.1,12.85L51.13,93.14l-8,23.63,15,8.93,5.31,1.46,2.33,3.08,7.14,4.25,46.87-27.09Zm-63-18.93-4,5.89-3.87,1.9L42,53.12l1.59-2.46,3-1.31h0l3.13-2.52Z"/><polygon class="cls-2" points="45.96 23.25 42.1 22.51 41.83 26.67 37.34 25.4 37.15 28.52 24.28 26.61 36.83 34.01 49.28 23.77 49.48 17.71 45.96 23.25"/></g></g></svg> -->
+                        <span class="absolute animate-pulse duration-100 p-1 bg-[#dc2626] top-0 -right-2 text-[8px] text-white rounded-sm">NEW</span>
+                    </button>
+
                     <button class="text- dark:text-[#cfcfcf] font-medium w-auto h-12 flex items-center justify-center px-5 rounded-md hover:bg-[#EBEBEB] active:bg-[#D7D7D7] dark:hover:bg-[#1B1B1B] dark:active:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]"
-                        x-on:click="$store.comps.why = true, $store.comps.about = false, $store.comps.listaHome = false">
+                        x-on:click="$store.comps.activeTab = 'why'">
                         Why Shadowmere?
                     </button>
 
-                    <button class="text-base dark:text-[#cfcfcf] font-medium w-auto h-12 flex items-center justify-center px-5 rounded-md hover:bg-[#EBEBEB] active:bg-[#D7D7D7] dark:hover:bg-[#1B1B1B] dark:active:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]"
-                        onclick="location.href='https://shadowsocks5.github.io/en/download/clients.html'">VPN Clients</button>
+                    <button class="text-base dark:text-[#cfcfcf] after:content-['\f08e'] after:font-awesome after:text-sm after:ml-1 font-medium w-auto h-12 flex items-center justify-center px-5 rounded-md hover:bg-[#EBEBEB] active:bg-[#D7D7D7] dark:hover:bg-[#1B1B1B] dark:active:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]"
+                        onclick="location.href='https://shadowsocks5.github.io/en/download/clients.html'">
+                        VPN Clients
+                    </button>
 
                     <button class="text-base dark:text-[#cfcfcf] font-medium w-auto h-12 flex items-center justify-center px-5 rounded-md hover:bg-[#EBEBEB] active:bg-[#D7D7D7] dark:hover:bg-[#1B1B1B] dark:active:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]"
-                        x-on:click="$store.comps.about = true, $store.comps.listaHome = false, $store.comps.why = false">About</button> 
+                        x-on:click="$store.comps.activeTab = 'about'">About</button> 
                     
                     <button class="text-base dark:text-[#cfcfcf] font-medium w-auto h-12 flex items-center justify-center px-5 rounded-md hover:bg-[#EBEBEB] active:bg-[#D7D7D7] dark:hover:bg-[#1B1B1B] dark:active:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]"
-                        x-on:click="$store.comps.listaHome = true, $store.comps.about = false, $store.comps.why = false">Home</button>
+                        x-on:click="$store.comps.activeTab = 'home'">Home</button>
                 </div>
             </div>
         </div>
@@ -346,7 +355,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
 
 
-        <div id="cuerpo" class="lista-servers-vpns col-span-12 xl:col-span-9 w-full h-full flex flex-col gap-4" x-show="$store.comps.listaHome" x-init="showItemServer = true">
+        <div id="cuerpo" class="lista-servers-vpns col-span-12 xl:col-span-9 w-full h-full flex flex-col gap-4" x-show="$store.comps.activeTab === 'home'" x-init="showItemServer = true">
 
             <div class="buttonPagesWrapper w-full 2xl:hidden h-auto flex justify-center">
                 <div class="buttonPages w-[328px] h-14 flex items-center justify-between">
@@ -449,7 +458,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
         </div>
 
-        <div class="contenido-about col-span-12 xl:col-span-9 w-full h-fit bg-white dark:bg-[#212121] dark:text-[#cfcfcf] rounded-lg shadow-lg flex flex-col gap-6 p-8 mb-4 2xl:mb-40" x-show="$store.comps.about">
+        <div class="contenido-about col-span-12 xl:col-span-9 w-full h-fit bg-white dark:bg-[#212121] dark:text-[#cfcfcf] rounded-lg shadow-lg flex flex-col gap-6 p-8 mb-4 2xl:mb-40" x-show="$store.comps.activeTab === 'about'">
 
             <h1 class="text-2xl font-bold">About Us</h1>
             <!-- Aqui va el contenido del About -->
@@ -461,7 +470,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
             
         </div>
 
-        <div class="contenido-about col-span-12 xl:col-span-9 w-full h-fit bg-white dark:bg-[#212121] dark:text-[#cfcfcf] rounded-lg shadow-lg flex flex-col gap-6 p-8 mb-4 2xl:mb-40" x-show="$store.comps.why">
+        <div class="contenido-about col-span-12 xl:col-span-9 w-full h-fit bg-white dark:bg-[#212121] dark:text-[#cfcfcf] rounded-lg shadow-lg flex flex-col gap-6 p-8 mb-4 2xl:mb-40" x-show="$store.comps.activeTab === 'why'">
 
             <h1 class="text-2xl font-bold">Why Shadowmere?</h1>
             <!-- Aqui va el contenido del About -->
@@ -475,6 +484,24 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
             While surely vastly harder to kill than typical bought horses in the game, it can be killed in steep falls and by concentrated frost or fire attacks by Ancient-ranked dragons, especially when it cannot manoeuvre out of close quarters when being attacked by said Ancient dragon. Shadowmere can also be killed by Mehrunes' Razor. In Oblivion, Shadowmere could be knocked unconscious by intensive attacks. 
             Then, players could store or retrieve objects from it just like a container. In Skyrim, once Shadowmere is finally killed, arrows that have been fired into the horse over the time it has been with the Dragonborn can be recovered.
             Shadowmere apparently reincarnates between eras, potentially changing subspecies of horse, and genders.</p>
+            
+
+            <!-- Aqui va el contenido del About -->
+            
+        </div>
+
+        <div class="contenido-about col-span-12 xl:col-span-9 w-full h-fit bg-white dark:bg-[#212121] dark:text-[#cfcfcf] rounded-lg shadow-lg flex flex-col gap-6 p-8 mb-4 2xl:mb-40" x-show="$store.comps.activeTab === 'support'">
+
+            <h1 class="text-2xl font-bold">The Shadowmere Official Tee</h1>
+            <!-- Aqui va el contenido del About -->
+            <p>We are releasing the Shadowmere official tee for those who love the project and wants to support us by buying it</p>
+            <div class="flex gap-4 h-auto">
+                <img src="https://vangogh.teespring.com/v3/image/DFqA9cbp7_Wq95i0JwY5ul66ENI/800/800.jpg" alt="" srcset="" class="w-1/2 h-auto rounded-lg">
+                <img src="https://vangogh.teespring.com/v3/image/r25YJ0ROGMCOU2lfd8vsVlXleP8/800/800.jpg" alt="" srcset="" class="w-1/2 h-auto rounded-lg">
+            </div>
+            <button class="button-fork w-fit after:content-['\f08e'] after:font-awesome after:ml-1 after:text-sm after:dark:text-[#303030] h-12 hidden lg:flex items-center justify-center px-8 rounded-md bg-[#303030] hover:bg-[#444444] active:bg-[#303030] dark:bg-[#cfcfcf] dark:hover:bg-[#bfbfbf] dark:active:bg-white dark:transition-colors text-white" onclick="location.href='https://swordfest.creator-spring.com/listing/shadowmere'"><span class="gap-2 flex">
+                <span class="dark:text-[#303030] font-medium">Get the tee!</span>
+            </button>
             
 
             <!-- Aqui va el contenido del About -->
