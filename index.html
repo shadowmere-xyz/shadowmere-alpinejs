@@ -157,7 +157,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     </nav>
 
     <div class="modal-menu-mobile w-full h-screen bg-black/50 z-[40] fixed top-0 pointer-events-auto" x-on:click="$store.comps.notTouchBgMenuMobile = false, $store.comps.open = false" x-show="$store.comps.open" x-transition:enter="opacity-30 ease-in-out duration-[70ms] " x-transition:leave="opacity-100 ease-in-out duration-[70ms]">
-        <div class="menu-mobile absolute w-full h-[304px] bg-white dark:bg-[#212121] right-0 lg:hidden flex flex-col items-center justify-between transition-transform ease-in-out duration-150 top-20 rounded-b-2xl shadow-lg" x-show="$store.comps.open" x-transition:enter="-translate-y-80 "
+        <div class="menu-mobile absolute w-full h-auto bg-white dark:bg-[#212121] right-0 lg:hidden flex flex-col items-center justify-between transition-transform ease-in-out duration-150 top-20 rounded-b-2xl shadow-lg" x-show="$store.comps.open" x-transition:enter="-translate-y-80 "
             x-transition:leave="-translate-y-60">
             <div class="w-full h-auto flex flex-col items-center gap-4 py-4 px-4">
                 <div class="w-full h-auto flex flex-col items-center justify-between gap-4 py-4 px-4">
@@ -175,8 +175,19 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                         <span class="dark:text-[#303030] font-medium">Fork me on GitHub</span>
                     </button>
                 
-                    <button class="text-base dark:text-[#cfcfcf] font-medium w-full h-12 flex items-center justify-center px-5 rounded-md bg-[#EBEBEB] hover:bg-[#D7D7D7] dark:bg-[#1B1B1B] dark:hover:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]" x-on:click="$store.comps.why = true, $store.comps.about = false, $store.comps.listaHome = false, $store.comps.open = false">Why Shadowmere?</button>
-                    <button class="text-base dark:text-[#cfcfcf] font-medium w-full h-12 flex items-center justify-center px-5 rounded-md bg-[#EBEBEB] hover:bg-[#D7D7D7] dark:bg-[#1B1B1B] dark:hover:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]" x-on:click="$store.comps.about = true, $store.comps.listaHome = false, $store.comps.why = false, $store.comps.open = false">About</button>
+                    <button class="text-base dark:text-[#cfcfcf] font-medium w-full h-12 flex items-center justify-center px-5 rounded-md bg-[#EBEBEB] hover:bg-[#D7D7D7] dark:bg-[#1B1B1B] dark:hover:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]" x-on:click="$store.comps.activeTab = 'home'">Home</button>
+
+                    <button class="text-base dark:text-[#cfcfcf] font-medium w-full h-12 flex items-center justify-center px-5 rounded-md bg-[#EBEBEB] hover:bg-[#D7D7D7] dark:bg-[#1B1B1B] dark:hover:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]" x-on:click="$store.comps.activeTab = 'why'">Why Shadowmere?</button>
+                    
+                    <button class="relative dark:text-[#cfcfcf] font-medium group w-full h-12 flex items-center justify-center px-5 rounded-md bg-[#EBEBEB] dark:bg-[#1B1B1B] cursor-pointer transition-colors transition-transform active:scale-[99%]"
+                        x-on:click="$store.comps.activeTab = 'support'">
+                        <div class="relative w-auto h-auto px-2 ">Support Us
+                        <span class="absolute animate-pulse duration-100 p-1 bg-[#dc2626] top-[2px] -right-6 text-[8px] text-white rounded-sm">NEW</span>
+                        </div>
+                        <!-- <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 149.9 149.9"><defs><style>.cls-1{fill:#dc2626;}.cls-2{fill:#fff;}</style></defs><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><rect class="cls-1" width="149.9" height="149.9" rx="74.95"/><polygon class="cls-2" points="66.72 30.62 71.44 19.81 82.78 17.87 97.19 15.4 77.61 27.24 66.72 30.62"/><polygon class="cls-2" points="84.96 36.15 94.73 27.92 116.58 31.49 91.87 39.52 84.96 36.15"/><polygon class="cls-2" points="100.29 49.73 112.32 46.15 133.01 60.2 110.48 56.16 100.29 49.73"/><polygon class="cls-2" points="112.5 72.2 119.99 69.81 135.28 78.27 119.54 76.64 112.5 72.2"/><polygon class="cls-2" points="115.99 91.36 122.62 91.92 130.44 98.32 122.32 96.13 115.99 91.36"/><path class="cls-2" d="M110.62,69.51,81.14,34.85,58.46,30.71l2.38-11-7.37,6-17,13.67L14.62,86.56l.67,3.53,1.61.27,3.9,5.92,5.74-1L35.62,86l24.57-10L58.82,63.49l4.1,12.85L51.13,93.14l-8,23.63,15,8.93,5.31,1.46,2.33,3.08,7.14,4.25,46.87-27.09Zm-63-18.93-4,5.89-3.87,1.9L42,53.12l1.59-2.46,3-1.31h0l3.13-2.52Z"/><polygon class="cls-2" points="45.96 23.25 42.1 22.51 41.83 26.67 37.34 25.4 37.15 28.52 24.28 26.61 36.83 34.01 49.28 23.77 49.48 17.71 45.96 23.25"/></g></g></svg> -->
+                    </button>
+
+                    <button class="text-base dark:text-[#cfcfcf] font-medium w-full h-12 flex items-center justify-center px-5 rounded-md bg-[#EBEBEB] hover:bg-[#D7D7D7] dark:bg-[#1B1B1B] dark:hover:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]" x-on:click="$store.comps.activeTab = 'about'">About</button>
                 </div>
                 <span class="font-twemoji align-baseline text-[#303030] dark:text-[#cfcfcf]">Made with ❤️ in Europe 🇪🇺 by Akiel</span>
             </div>
@@ -358,7 +369,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
         <div id="cuerpo" class="lista-servers-vpns col-span-12 xl:col-span-9 w-full h-full flex flex-col gap-4" x-show="$store.comps.activeTab === 'home'" x-init="showItemServer = true">
 
-            <div class="buttonPagesWrapper w-full 2xl:hidden h-auto flex justify-center">
+            <div class="buttonPagesWrapper w-full h-auto 2xl:hidden flex justify-center">
                 <div class="buttonPages w-[328px] h-14 flex items-center justify-between">
                     <button class="button-previous w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold font-awesome rounded-lg shadow-xl" type="button" x-on:click="pageCounter = 1, selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + countryPagination + '&port=' + portPagination + '&page=' + pageCounter.toString())).json(), count = 1">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f100'] after:hover:-translate-x-[2px] after:hover:transition-all"></div>                        
@@ -386,16 +397,16 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
             <template x-for="proxy in Object.values($store.comps.proxies.results)" :key="proxy.id">
             
-            <div class="item-server-vpn w-full h-20 sm:h-24 bg-white dark:bg-[#212121] dark:text-[#cfcfcf] rounded-lg shrink-0 flex items-center justify-between px-4 md:px-8 py-2 shadow-lg hover:cursor-pointer hover:-translate-y-[2px] dark:hover:bg-[#303030] hover:bg-[#FDFDFD] transition-all " x-show="showItemServer" x-data="{timeCopy: false}" x-init="console.log(getPercentage()" x-on:click="$refs.bar.style.width = (getPercentage(proxy.times_check_succeeded, proxy.times_checked)/100)*48">
+            <div class="item-server-vpn w-full h-20 sm:h-24 bg-white dark:bg-[#212121] dark:text-[#cfcfcf] rounded-lg shrink-0 flex items-center justify-between px-4 md:px-8 py-2 shadow-lg hover:cursor-pointer hover:-translate-y-[2px] dark:hover:bg-[#303030] hover:bg-[#FDFDFD] transition-all " x-show="showItemServer" x-data="{timeCopy: false}">
             
                 <div class="data-country-ip gap-2 md:gap-4 flex items-center">
                     <div class="font-twemoji select-none flex items-center text-xl w-6 h-6 cursor-pointer" x-text="getFlagEmoji(proxy.location_country_code)" x-on:click="selectedCountry = proxy.location_country_code, pageCounter = 1, $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + selectedCountry + '&page=' + pageCounter.toString())).json(), count = 1"> </div>
 
-                    <div class="relative w-12 h-6 flex items-center justify-start select-none bg-[#cfcfcf] font-medium text-xs sm:text-sm rounded overflow-hidden" x-init="$nextTick($refs.bar.style.width = (getPercentage(proxy.times_check_succeeded, proxy.times_checked)/100)*48)">
+                    <div class="relative w-12 h-6 flex items-center justify-start select-none bg-[#cfcfcf] font-medium text-xs sm:text-sm rounded overflow-hidden">
 
-                        <div class="h-full" x-ref="bar" x-bind:class="((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 85) && (getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 30) && 'bg-yellow-500 ') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 85) && 'bg-green-500') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 30) && 'bg-red-500')"></div>
+                        <div class="w-full h-full" x-ref="bar" x-bind:class="((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 79) && (getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 30) && 'bg-yellow-500 ') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 79) && 'bg-green-500') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 30) && 'bg-red-500')"></div>
                         <!-- text-[#cfcfcf] dark:text-[#303030] <div class="h-full " x-bind:class="((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 70) && (getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 40) && 'w-[' + (48*(getPercentage(proxy.times_check_succeeded, proxy.times_checked)/100)).toString() + 'px] bg-yellow-500') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 70) && 'w-[' + (48*(getPercentage(proxy.times_check_succeeded, proxy.times_checked)/100)).toString() + 'px] bg-green-500') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 40) && 'w-[' + (48*(getPercentage(proxy.times_check_succeeded, proxy.times_checked)/100)).toString() + 'px] bg-red-500')"></div> -->
-                        <span class="absolute w-12 h-6 z-10 flex items-center justify-center dark:text-[#303030] px-2" x-text="getPercentage(proxy.times_check_succeeded, proxy.times_checked).toString() + '%'"></span>
+                        <span class="absolute w-12 h-6 z-10 text-[#303030] flex items-center justify-center px-2" x-text="getPercentage(proxy.times_check_succeeded, proxy.times_checked).toString() + '%'"></span>
 
                     </div>
                     <span class="font-semibold w-auto overflow-hidden truncate text-sm sm:text-base" x-text="proxy.ip_address">...</span>
@@ -513,25 +524,8 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                 </button>
             </div>
             
-
-            <!-- Aqui va el contenido del About -->
-            
         </div>
-
-            <!-- <div id="cuerpo" class="lista-servers-vpns col-span-12 xl:col-span-9 w-full h-full flex flex-col gap-4 bg-white dark:bg-[#212121] dark:text-[#cfcfcf] rounded-lg shrink-0 items-center" x-show="$store.comps.menu == 'aaa'">Whyyyyyyyyyy</div> -->
-
-            <!-- <div x-show="toast" class="w-96 p-4 rounded-lg h-32 fixed bottom-4 bg-[#303030] dark:bg-[#cfcfcf] right-4 transform-gpu transition-transform duration-400 ease" x-data="toast: true" x-on:click="" x-class="success ? 'bg-green-500' : 'bg-red-500'" x-transition:enter-start="translate-y-full"
-                x-transition:enter-end="translate-y-0" x-transition:leave-start="translate-y-0" x-transition:leave-end="translate-y-full">
-                <p class="text-white"><strong x-text="title"></strong></p>
-                <p class="mt-2 text-sm text-white" x-text="message"></p>
-            </div> -->
-            <!-- <div class="col-span-12 w-full h-10 country-flag"></div> -->
     </main>
-    <!-- <div x-show="toast" class="w-96 p-4 rounded h-32 fixed bottom-4 bg-[#303030] dark:bg-[#cfcfcf] right-4 transform-gpu transition-transform duration-400 ease" x-data="toast: true" x-class="success ? 'bg-green-500' : 'bg-red-500'" x-transition:enter-start="translate-y-full"
-        x-transition:enter-end="translate-y-0" x-transition:leave-start="translate-y-0" x-transition:leave-end="translate-y-full">
-        <p class="text-white"><strong x-text="title"></strong></p>
-        <p class="mt-2 text-sm text-white" x-text="message"></p>
-    </div> -->
 </body>
 
 </html>
