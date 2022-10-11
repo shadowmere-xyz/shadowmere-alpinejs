@@ -1082,6 +1082,10 @@ html {
   width: 90px;
 }
 
+.w-3 {
+  width: 0.75rem;
+}
+
 .w-40 {
   width: 10rem;
 }
