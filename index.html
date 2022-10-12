@@ -446,8 +446,8 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                     <div class="w-auto h-auto flex gap-2 items-center">
                         <div class="country-flag font-twemoji select-none flex items-center text-3xl sm:text-4xl w-auto h-6 cursor-pointer" x-text="getFlagEmoji(proxy.location_country_code)" x-on:click="countryPagination = proxy.location_country_code, selectedCountry = proxy.location_country_code, pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = 1"></div>
                         <div class="nombre-ip w-auto h-auto flex flex-col ">
-                            <span class="font-semibold w-auto overflow-hidden truncate text-sm sm:text-base " x-text="proxy.location_country">...</span>
-                            <span class="font-semibold w-auto overflow-hidden truncate text-sm text-[#7e7d7d] sm:text-base " x-text="proxy.ip_address">...</span>
+                            <span class=" leading-[1.10rem] font-semibold w-auto overflow-hidden truncate text-[14px] sm:text-[16px] " x-text="proxy.location_country">...</span>
+                            <span class=" leading-[1.10rem] font-medium w-auto overflow-hidden truncate text-[14px] text-[#7e7d7d] sm:text-[16px] " x-text="proxy.ip_address">...</span>
                         </div>
                     </div>
 
@@ -456,9 +456,9 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                             <div class="w-full h-full" x-ref="bar" x-bind:class="((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 79) && (getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 30) && 'bg-yellow-500 w-6') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 79) && 'bg-green-500 w-full') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 30) && 'bg-red-500 w-3')"></div>
                             <span class="absolute w-12 h-6 z-10 text-[#303030] flex items-center justify-center px-2" x-text="getPercentage(proxy.times_check_succeeded, proxy.times_checked).toString() + '%'"></span>
                         </div>
-                        <div class="relative w-12 h-6 flex items-center justify-center select-none bg-[#cfcfcf] font-medium text-xs sm:text-sm rounded overflow-hidden" x-on:click="portPagination = proxy.port, selectedPort = proxy.port, pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = 1">
+                        <div class=" relative w-12 h-6 flex items-center justify-center select-none bg-[#cfcfcf] font-medium text-xs sm:text-sm rounded overflow-hidden" x-on:click="portPagination = proxy.port, selectedPort = proxy.port, pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = 1">
                             <div class="w-full h-full bg-[#7474FF]" x-ref="bar" ></div>
-                            <span class="absolute w-12 h-6 z-10 text-[#303030] font-semibold flex items-center justify-center px-2" x-text="proxy.port"></span>
+                            <span class="absolute w-12 h-6 z-10 text-[#ffffff] font-semibold flex items-center justify-center px-2" x-text="proxy.port"></span>
                         </div>
                     </div>
                 </div>

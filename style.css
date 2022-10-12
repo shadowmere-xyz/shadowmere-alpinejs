@@ -1578,6 +1578,10 @@ html {
   line-height: 2.5rem;
 }
 
+.text-\[14px\] {
+  font-size: 14px;
+}
+
 .font-medium {
   font-weight: 500;
 }
@@ -1596,6 +1600,10 @@ html {
 
 .leading-none {
   line-height: 1;
+}
+
+.leading-\[1\.10rem\] {
+  line-height: 1.10rem;
 }
 
 .text-white {
@@ -1631,6 +1639,11 @@ html {
 .text-\[\#7e7d7d\] {
   --tw-text-opacity: 1;
   color: rgb(126 125 125 / var(--tw-text-opacity));
+}
+
+.text-\[\#ffffff\] {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .accent-\[\#303030\] {
@@ -2098,6 +2111,10 @@ html {
   .sm\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
+  }
+
+  .sm\:text-\[16px\] {
+    font-size: 16px;
   }
 }
 
