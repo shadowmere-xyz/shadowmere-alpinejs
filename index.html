@@ -354,7 +354,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
         <div id="cuerpo" class="lista-servers-vpns col-span-12 xl:col-span-9 w-full h-full flex flex-col gap-4" x-show="$store.comps.activeTab === 'home'" x-init="showItemServer = true">
 
-            <div class="buttonPagesWrapper w-full h-auto flex justify-center">
+            <div class="buttonPagesWrapper w-full h-auto 2xl:hidden flex justify-center">
                 <div class="buttonPages w-[328px] h-14 flex items-center justify-between">
                     <button class="button-previous w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold font-awesome rounded-lg shadow-xl" type="button" x-on:click="pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = 1">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f100'] after:hover:-translate-x-[2px] after:hover:transition-all"></div>                        
