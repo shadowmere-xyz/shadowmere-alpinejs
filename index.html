@@ -457,7 +457,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                             <span class="absolute w-12 h-6 z-10 text-[#303030] flex items-center justify-center px-2" x-text="getPercentage(proxy.times_check_succeeded, proxy.times_checked).toString() + '%'"></span>
                         </div>
                         <div class=" relative w-12 h-6 flex items-center justify-center select-none bg-[#cfcfcf] font-medium text-xs sm:text-sm rounded overflow-hidden" x-on:click="portPagination = proxy.port, selectedPort = proxy.port, pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = 1">
-                            <div class="w-full h-full bg-[#ff7474]" x-ref="bar" ></div>
+                            <div class="w-full h-full bg-[#7474FF]" x-ref="bar" ></div>
                             <span class="absolute w-12 h-6 z-10 text-[#ffffff] font-semibold flex items-center justify-center px-2" x-text="proxy.port"></span>
                         </div>
                     </div>
