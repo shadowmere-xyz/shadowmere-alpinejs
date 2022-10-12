@@ -1104,6 +1104,14 @@ html {
   width: fit-content;
 }
 
+.w-10 {
+  width: 2.5rem;
+}
+
+.w-11 {
+  width: 2.75rem;
+}
+
 .shrink-0 {
   flex-shrink: 0;
 }
@@ -1586,6 +1594,10 @@ html {
   font-weight: 700;
 }
 
+.leading-none {
+  line-height: 1;
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -2027,6 +2039,10 @@ html {
 @media (min-width: 640px) {
   .sm\:flex {
     display: flex;
+  }
+
+  .sm\:hidden {
+    display: none;
   }
 
   .sm\:h-24 {
