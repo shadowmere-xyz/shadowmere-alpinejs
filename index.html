@@ -31,7 +31,8 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
 <body class=" overflow-y-scroll bg-[#F8F8F8] dark:bg-[#141414]" x-data="{selectedCountry: 'UN', countryPagination: '', selectedPort: 'Any', portPagination: '', codes: null, ports: null, codeString: null, pageCounter: 1, count: 1, temp: '', atTop: true, loader: true }" x-init="
     
-    $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json()
+    <!-- $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() -->
+    $store.comps.proxies = await(await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json();
 
     codes = await (await fetch('https://shadowmere.akiel.dev/api/country-codes')).json()
 
@@ -53,6 +54,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     $store.comps.menu = 'servers'
     
     loader = false
+
 " x-bind:class="($store.comps.notTouchBgCountries || $store.comps.notTouchBgServers || $store.comps.notTouchBgMenuMobile || $store.comps.notTouchBgQR) && 'pointer-events-none relative overflow-hidden' ">
     <div class="loader-screen w-full h-full top-0 z-[90] bg-white dark:bg-[#141414] fixed flex items-center justify-center" x-show="darkMode && loader" x-transition>
         <lottie-player src="./others/logo-animation-2-dark.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
@@ -291,7 +293,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                 <div class="w-full h-6 flex items-center font-semibold gap-2 pl-4">
                     <svg class="fill-[#303030] dark:fill-[#cfcfcf]" width="12" height="13" viewBox="0 0 12 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M11.25 4.25H0.75C0.335789 4.25 0 3.91421 0 3.5V2C0 1.58579 0.335789 1.25 0.75 1.25H11.25C11.6642 1.25 12 1.58579 12 2V3.5C12 3.91421 11.6642 4.25 11.25 4.25ZM10.125 2.1875C9.81434 2.1875 9.5625 2.43934 9.5625 2.75C9.5625 3.06066 9.81434 3.3125 10.125 3.3125C10.4357 3.3125 10.6875 3.06066 10.6875 2.75C10.6875 2.43934 10.4357 2.1875 10.125 2.1875ZM8.625 2.1875C8.31434 2.1875 8.0625 2.43934 8.0625 2.75C8.0625 3.06066 8.31434 3.3125 8.625 3.3125C8.93566 3.3125 9.1875 3.06066 9.1875 2.75C9.1875 2.43934 8.93566 2.1875 8.625 2.1875ZM11.25 8H0.75C0.335789 8 0 7.66421 0 7.25V5.75C0 5.33579 0.335789 5 0.75 5H11.25C11.6642 5 12 5.33579 12 5.75V7.25C12 7.66421 11.6642 8 11.25 8ZM10.125 5.9375C9.81434 5.9375 9.5625 6.18934 9.5625 6.5C9.5625 6.81066 9.81434 7.0625 10.125 7.0625C10.4357 7.0625 10.6875 6.81066 10.6875 6.5C10.6875 6.18934 10.4357 5.9375 10.125 5.9375ZM8.625 5.9375C8.31434 5.9375 8.0625 6.18934 8.0625 6.5C8.0625 6.81066 8.31434 7.0625 8.625 7.0625C8.93566 7.0625 9.1875 6.81066 9.1875 6.5C9.1875 6.18934 8.93566 5.9375 8.625 5.9375ZM11.25 11.75H0.75C0.335789 11.75 0 11.4142 0 11V9.5C0 9.08579 0.335789 8.75 0.75 8.75H11.25C11.6642 8.75 12 9.08579 12 9.5V11C12 11.4142 11.6642 11.75 11.25 11.75ZM10.125 9.6875C9.81434 9.6875 9.5625 9.93934 9.5625 10.25C9.5625 10.5607 9.81434 10.8125 10.125 10.8125C10.4357 10.8125 10.6875 10.5607 10.6875 10.25C10.6875 9.93934 10.4357 9.6875 10.125 9.6875ZM8.625 9.6875C8.31434 9.6875 8.0625 9.93934 8.0625 10.25C8.0625 10.5607 8.31434 10.8125 8.625 10.8125C8.93566 10.8125 9.1875 10.5607 9.1875 10.25C9.1875 9.93934 8.93566 9.6875 8.625 9.6875Z"/>
-                        </svg> <span class="font-normal" x-text="$store.comps.proxies.count + ' ' + 'Keys'"></span>
+                        </svg> <span class="font-normal" x-text="$store.comps.proxies.count + ' Keys'"></span>
 
                 </div>
             </div>
@@ -309,34 +311,17 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                 </div>
             </div>
 
-            <div class="ports-filter flex flex-col gap-2 xl:gap-4">
+            <div class="ports-filter flex flex-col gap-2 xl:gap-4" x-init="console.log(selectedCountry) ">
                 <div class="w-full h-6 flex items-center font-semibold gap-2">
                     <svg class="fill-[#303030] dark:fill-[#cfcfcf]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="m22 15-3-4-3 4h1.906c-.436 2.469-2.438 4.471-4.906 4.906V13h2v-2h-2V9.336c1.543-.459 2.714-1.923 2.714-3.621C15.714 3.666 14.048 2 12 2S8.286 3.666 8.286 5.715c0 1.698 1.171 3.162 2.714 3.621V11H9v2h2v6.906C8.531 19.471 6.529 17.469 6.094 15H8l-3-4-3 4h2.073c.511 3.885 3.929 7 7.927 7s7.416-3.115 7.927-7H22zM10.286 5.715C10.286 4.77 11.055 4 12 4s1.714.77 1.714 1.715c0 .951-.801 1.785-1.714 1.785s-1.714-.834-1.714-1.785z"></path></svg> Ports
 
                 </div>
                 
-                <select title="Ports" name="ports" id="port-selection" class="relative puertos form-select rounded-md overflow-scroll border-gray-300 mx-2 text-[#303030] dark:text-[#cfcfcf] dark:border-0 dark:bg-[#303030] outline-none cursor-pointer" x-model="selectedPort" x-on:change="selectedPort === 'Any' ? portPagination = '' : portPagination = selectedPort, pageCounter = 1, selectedPort === 'Any' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true' + '&port=' + portPagination + '&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&port=' + portPagination + '&location_country_code=' + countryPagination + '&page=' + pageCounter.toString())).json(), cont = 1, isSelected = true" x-init="console.log(item.location_country_code)">
+                <select title="Ports" name="ports" id="port-selection" class="relative puertos form-select rounded-md overflow-scroll border-gray-300 mx-2 text-[#303030] dark:text-[#cfcfcf] dark:border-0 dark:bg-[#303030] outline-none cursor-pointer" x-model="selectedPort" x-on:change="selectedPort === 'Any' ? portPagination = '' : portPagination = selectedPort, pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), cont = 1, isSelected = true, console.log(selectedCountry), console.log(selectedPort)">
                     <template x-for="port in ports">
                         <option id="opcion" :value="port.port" x-text="port.port"></option>
                     </template>
                 </select>
-
-                <div id="swui-dropdown" class="hidden h-10 bg-white border-[1px] border-[#d1d5db] dark:border-0 focus:dark:outline-1 active: dark:bg-[#303030] dark:hover:bg-[#3a3a3a] rounded-md cursor-pointer flex items-center justify-between p-2 pl-3 mx-2 dark:text-[#cfcfcf] text-[#303030] select-none" x-cloak x-data="{lista : false, isSelectedText: 'Ok', isSelected: true, isMobile: false, defaultItem: 'Any', posicion: true, recta: null}" x-on:click="lista = !lista, recta = $el.getBoundingClientRect(), console.log(window.innerWidth), (window.innerHeight - recta.bottom) < 256 ? posicion = false : posicion = true, window.innerWidth < 1024 ? isMobile = true : isMobile = false" x-bind:class="isMobile ? 'static' : 'relative'" x-on:click.outside="lista = false">
-                    <span class="w-auto" x-text="selectedPort"></span>
-                    <svg xmlns="http://ww.w3.org/2000/svg" class="" x-bind:class="lista ? 'rotate-180 transition-transform duration-300' : 'rotate-0 transition-transform duration-300'" width="24" height="24" viewBox="0 0 24 24" style="fill: #6b7280;"><path d="M16.293 9.293 12 13.586 7.707 9.293l-1.414 1.414L12 16.414l5.707-5.707z"></path></svg>
-
-                    <div class="absolute z-[160] w-full shadow-lg lg:border-[0.5px] lg:border-[#d1d5db] h-full lg:h-64 overflow-hidden right-0 lg:rounded-md" role="dialog" x-bind:class="posicion ? 'top-0 lg:max-h-64 lg:top-11' : 'bottom-0 lg:max-h-64 lg:bottom-11'" x-show="lista" x-transition @swipeleft="lista = false">
-                        <ul class="overflow-y-auto w-full h-full lg:h-64 right-0 bg-white dark:bg-[#303030] lg:rounded-md select-none snap-proximity">
-                            <template x-for="port in ports">
-                                <!-- after:content-[' '] after:w-full after:h-[0.5px] border-2 -->
-                                <li class="hover:bg-blue-400 hover:text-white focus-within:bg-blue-400  flex items-center justify-between w-full border-b-[1px] lg:border-0 p-2" x-bind:class="isMobile ? 'text-xl h-20 px-4' : 'h-8'" x-on:click="isSelected = false, selectedPort = port.port, selectedPort === 'Any' ? portPagination = '' : portPagination = selectedPort, pageCounter = 1, selectedPort === 'Any' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true' + '&port=' + portPagination + '&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&port=' + portPagination + '&location_country_code=' + countryPagination + '&page=' + pageCounter.toString())).json(), cont = 1, isSelected = true">
-                                    <span x-text="port.port"></span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" x-show="isSelected && (selectedPort == port.port)" class="hover:fill-white fill-[#303030] dark:fill-[#cfcfcf]" width="24" height="24" viewBox="0 0 24 24"><path d="m10 15.586-3.293-3.293-1.414 1.414L10 18.414l9.707-9.707-1.414-1.414z"></path></svg>
-                                </li>
-                            </template>
-                        </ul>
-                    </div>
-                </div>
             </div>
 
             <div class="countries-filter flex flex-col gap-2 xl:gap-4">
@@ -349,7 +334,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
                 </div>
                 
-                <select title="Countries" name="countries" id="countries-selection" class="form-select font-twemoji rounded-md border-gray-300 mx-2 text-[#303030] dark:text-[#cfcfcf] dark:border-0 dark:bg-[#303030] outline-none cursor-pointer" x-model="selectedCountry" x-on:change="selectedCountry === 'UN' ? countryPagination = '' : countryPagination = selectedCountry, pageCounter = 1, selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + countryPagination + '&port=' + portPagination + '&page=' + pageCounter.toString())).json(), count = 1" x-init="console.log(item.location_country_code)">
+                <select title="Countries" name="countries" id="countries-selection" class="form-select font-twemoji rounded-md border-gray-300 mx-2 text-[#303030] dark:text-[#cfcfcf] dark:border-0 dark:bg-[#303030] outline-none cursor-pointer" x-model="selectedCountry" x-on:change="selectedCountry === 'UN' ? countryPagination = '' : countryPagination = selectedCountry, pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = 1">
                     <template x-for="code in codes">
                         <option id="opcion" class="bandera" x-ref="opt" :value="code.code" x-text="getFlagEmoji(code.code) + ' ' + code.name"></option>
                     </template>
@@ -358,7 +343,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
             
 
-            <button class="button-fork w-auto h-12 flex items-center justify-center px-5 rounded-md bg-[#212121] hover:bg-[#444444] active:bg-[#303030] dark:bg-[#cfcfcf] dark:hover:bg-[#bfbfbf] dark:active:bg-white dark:transition-colors text-white" x-on:click="$store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() ,selectedCountry = 'UN', selectedPort = 'Any'"><span class="gap-2 flex">
+            <button class="button-reset w-auto h-12 flex items-center justify-center px-5 rounded-md bg-[#212121] hover:bg-[#444444] active:bg-[#303030] dark:bg-[#cfcfcf] dark:hover:bg-[#bfbfbf] dark:active:bg-white dark:transition-colors text-white" x-on:click="$store.comps.proxies = await (await fetch(endpointURL(1, '', ''))).json() ,selectedCountry = 'UN', selectedPort = 'Any'"><span class="gap-2 flex">
                 <svg class="dark:fill-[#303030] fill-[#cfcfcf]" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" ><path d="M12 16c1.671 0 3-1.331 3-3s-1.329-3-3-3-3 1.331-3 3 1.329 3 3 3z"></path><path d="M20.817 11.186a8.94 8.94 0 0 0-1.355-3.219 9.053 9.053 0 0 0-2.43-2.43 8.95 8.95 0 0 0-3.219-1.355 9.028 9.028 0 0 0-1.838-.18V2L8 5l3.975 3V6.002c.484-.002.968.044 1.435.14a6.961 6.961 0 0 1 2.502 1.053 7.005 7.005 0 0 1 1.892 1.892A6.967 6.967 0 0 1 19 13a7.032 7.032 0 0 1-.55 2.725 7.11 7.11 0 0 1-.644 1.188 7.2 7.2 0 0 1-.858 1.039 7.028 7.028 0 0 1-3.536 1.907 7.13 7.13 0 0 1-2.822 0 6.961 6.961 0 0 1-2.503-1.054 7.002 7.002 0 0 1-1.89-1.89A6.996 6.996 0 0 1 5 13H3a9.02 9.02 0 0 0 1.539 5.034 9.096 9.096 0 0 0 2.428 2.428A8.95 8.95 0 0 0 12 22a9.09 9.09 0 0 0 1.814-.183 9.014 9.014 0 0 0 3.218-1.355 8.886 8.886 0 0 0 1.331-1.099 9.228 9.228 0 0 0 1.1-1.332A8.952 8.952 0 0 0 21 13a9.09 9.09 0 0 0-.183-1.814z"></path></svg>
                 <span class="dark:text-[#303030] font-medium">Reset Filters</span>
             </button>
@@ -371,21 +356,21 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
             <div class="buttonPagesWrapper w-full h-auto 2xl:hidden flex justify-center">
                 <div class="buttonPages w-[328px] h-14 flex items-center justify-between">
-                    <button class="button-previous w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold font-awesome rounded-lg shadow-xl" type="button" x-on:click="pageCounter = 1, selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + countryPagination + '&port=' + portPagination + '&page=' + pageCounter.toString())).json(), count = 1">
+                    <button class="button-previous w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold font-awesome rounded-lg shadow-xl" type="button" x-on:click="pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = 1">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f100'] after:hover:-translate-x-[2px] after:hover:transition-all"></div>                        
                     </button>
     
-                    <button class="button-previous w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter > 1 ? pageCounter-- : pageCounter, selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + countryPagination + '&port=' + portPagination + '&page=' + pageCounter.toString())).json(), count = pageCounter">
+                    <button class="button-previous w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter > 1 ? pageCounter-- : pageCounter, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = pageCounter">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f104'] after:hover:-translate-x-[2px] after:hover:transition-all"></div>                                                
                     </button>
     
                     <span class="w-[90px] dark:text-[#cfcfcf] text-center font-semibold text-sm sm:text-base" x-text="count.toString() + ' of ' + totalServersPages($store.comps.proxies.count, 20).toString()"></span>
     
-                    <button class="button-next w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter < totalServersPages($store.comps.proxies.count, 20) ? pageCounter++ : pageCounter, selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + countryPagination + '&port=' + portPagination + '&page=' + pageCounter.toString())).json(), showItemServer = true, count = pageCounter">
+                    <button class="button-next w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter < totalServersPages($store.comps.proxies.count, 20) ? pageCounter++ : pageCounter, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), showItemServer = true, count = pageCounter">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f105'] after:hover:translate-x-[2px] after:hover:transition-all"></div>                        
                     </button>
     
-                    <button class="button-next w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter = totalServersPages($store.comps.proxies.count, 20), selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + countryPagination + '&port=' + portPagination + '&page=' + pageCounter.toString())).json(), count = totalServersPages($store.comps.proxies.count, 20)">
+                    <button class="button-next w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter = totalServersPages($store.comps.proxies.count, 20), $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = totalServersPages($store.comps.proxies.count, 20)">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f101'] after:hover:translate-x-[2px] after:hover:transition-all"></div>                                               
                     </button>
                 </div>
@@ -397,20 +382,23 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
             <template x-for="proxy in Object.values($store.comps.proxies.results)" :key="proxy.id">
             
-            <div class="item-server-vpn w-full h-20 sm:h-24 bg-white dark:bg-[#212121] dark:text-[#cfcfcf] rounded-lg shrink-0 flex items-center justify-between px-4 md:px-8 py-2 shadow-lg hover:cursor-pointer hover:-translate-y-[2px] dark:hover:bg-[#303030] hover:bg-[#FDFDFD] transition-all " x-show="showItemServer" x-data="{timeCopy: false}">
+            <!-- <div class="item-server-vpn w-full h-20 sm:h-24 bg-white dark:bg-[#212121] dark:text-[#cfcfcf] rounded-lg shrink-0 flex items-center justify-between px-4 md:px-8 py-2 shadow-lg hover:cursor-pointer hover:-translate-y-[2px] dark:hover:bg-[#303030] hover:bg-[#FDFDFD] transition-all " x-show="showItemServer" x-data="{timeCopy: false}">
             
                 <div class="data-country-ip gap-2 md:gap-4 flex items-center">
                     <div class="font-twemoji select-none flex items-center text-xl w-6 h-6 cursor-pointer" x-text="getFlagEmoji(proxy.location_country_code)" x-on:click="selectedCountry = proxy.location_country_code, pageCounter = 1, $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + selectedCountry + '&page=' + pageCounter.toString())).json(), count = 1"> </div>
 
-                    <div class="relative w-12 h-6 flex items-center justify-start select-none bg-[#cfcfcf] font-medium text-xs sm:text-sm rounded overflow-hidden">
-
-                        <div class="w-full h-full" x-ref="bar" x-bind:class="((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 79) && (getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 30) && 'bg-yellow-500 ') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 79) && 'bg-green-500') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 30) && 'bg-red-500')"></div>
-                        <!-- text-[#cfcfcf] dark:text-[#303030] <div class="h-full " x-bind:class="((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 70) && (getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 40) && 'w-[' + (48*(getPercentage(proxy.times_check_succeeded, proxy.times_checked)/100)).toString() + 'px] bg-yellow-500') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 70) && 'w-[' + (48*(getPercentage(proxy.times_check_succeeded, proxy.times_checked)/100)).toString() + 'px] bg-green-500') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 40) && 'w-[' + (48*(getPercentage(proxy.times_check_succeeded, proxy.times_checked)/100)).toString() + 'px] bg-red-500')"></div> -->
-                        <span class="absolute w-12 h-6 z-10 text-[#303030] flex items-center justify-center px-2" x-text="getPercentage(proxy.times_check_succeeded, proxy.times_checked).toString() + '%'"></span>
-
+                    
+                    <div class="w-auto h-auto flex lg:flex-row flex-col gap-2">
+                        <div class="relative w-12 h-6 flex items-center justify-start select-none bg-[#cfcfcf] font-medium text-xs sm:text-sm rounded overflow-hidden">
+                            <div class="w-full h-full" x-ref="bar" x-bind:class="((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 79) && (getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 30) && 'bg-yellow-500 w-6') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 79) && 'bg-green-500 w-full') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 30) && 'bg-red-500 w-3')"></div>
+                            <span class="absolute w-12 h-6 z-10 text-[#303030] flex items-center justify-center px-2" x-text="getPercentage(proxy.times_check_succeeded, proxy.times_checked).toString() + '%'"></span>
+                        </div>
+                        <div class="relative w-12 h-6 flex items-center justify-start select-none bg-[#cfcfcf] font-medium text-xs sm:text-sm rounded overflow-hidden">
+                            <div class="w-full h-full" x-ref="bar" x-bind:class="((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 79) && (getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 30) && 'bg-yellow-500 w-6') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 79) && 'bg-green-500 w-full') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 30) && 'bg-red-500 w-3')"></div>
+                            <span class="absolute w-12 h-6 z-10 text-[#303030] flex items-center justify-center px-2" x-text="getPercentage(proxy.times_check_succeeded, proxy.times_checked).toString() + '%'"></span>
+                        </div>
                     </div>
                     <span class="font-semibold w-auto overflow-hidden truncate text-sm sm:text-base" x-text="proxy.ip_address">...</span>
-                    <!-- <button x-on:click="$el.innerHTML = 'This is my own IP address' + proxy.ip_address ">Click Me</button> -->
                     
                 </div>
 
@@ -450,26 +438,88 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                     </a>
                     
                 </div>
+            </div> -->
+
+            <div class="item-server-vpn w-full h-24 sm:h-28 bg-white dark:bg-[#212121] dark:text-[#cfcfcf] rounded-lg shrink-0 flex items-center justify-between px-4 py-2 md:py-4 shadow-lg hover:cursor-pointer hover:-translate-y-[2px] dark:hover:bg-[#303030] hover:bg-[#FDFDFD] transition-all " x-show="showItemServer" x-data="{timeCopy: false}">
+            
+                <div class="data-country-ip gap-1 flex flex-col items-start justify-center">
+                    <div class="w-auto h-auto flex gap-2 items-center">
+                        <div class="country-flag font-twemoji select-none flex items-center text-3xl sm:text-4xl w-auto h-6 cursor-pointer" x-text="getFlagEmoji(proxy.location_country_code)" x-on:click="countryPagination = proxy.location_country_code, selectedCountry = proxy.location_country_code, pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = 1"></div>
+                        <div class="nombre-ip w-auto h-auto flex flex-col ">
+                            <span class=" leading-[1.10rem] font-semibold w-auto overflow-hidden truncate text-[14px] sm:text-[16px] " x-text="proxy.location_country">...</span>
+                            <span class=" leading-[1.10rem] font-medium w-auto overflow-hidden truncate text-[14px] text-[#7e7d7d] sm:text-[16px] " x-text="proxy.ip_address">...</span>
+                        </div>
+                    </div>
+
+                    <div class=" w-auto h-auto flex gap-2">
+                        <div class="relative w-11 h-6 flex items-center justify-start select-none bg-[#cfcfcf] font-medium text-xs sm:text-sm rounded overflow-hidden">
+                            <div class="w-full h-full" x-ref="bar" x-bind:class="((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 79) && (getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 30) && 'bg-yellow-500 w-6') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) > 79) && 'bg-green-500 w-full') || ((getPercentage(proxy.times_check_succeeded, proxy.times_checked) <= 30) && 'bg-red-500 w-3')"></div>
+                            <span class="absolute w-12 h-6 z-10 text-[#303030] flex items-center justify-center px-2" x-text="getPercentage(proxy.times_check_succeeded, proxy.times_checked).toString() + '%'"></span>
+                        </div>
+                        <div class=" relative w-12 h-6 flex items-center justify-center select-none bg-[#cfcfcf] font-medium text-xs sm:text-sm rounded overflow-hidden" x-on:click="portPagination = proxy.port, selectedPort = proxy.port, pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = 1">
+                            <div class="w-full h-full bg-[#7474FF]" x-ref="bar" ></div>
+                            <span class="absolute w-12 h-6 z-10 text-[#ffffff] font-semibold flex items-center justify-center px-2" x-text="proxy.port"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-operations gap-4 flex flex-row-reverse items-center" >
+                    
+
+                    <button title="Copy" class="opt-copiar relative w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]" x-on:click="navigator.clipboard.writeText(proxy.url+'#'+encodeURI(proxy.location)), timeCopy = true">
+                        <div class="absolute w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center" x-show="timeCopy, setTimeout(() => { timeCopy = false }, 500)" x-transition.duration.200ms>
+                            <svg class=" bg-transparent w-6 h-6 stroke-[#303030] dark:stroke-[#cfcfcf]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5 11.2L10.25 16L19 8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>                                
+                        </div>
+                        <svg class="fill-[#303030] dark:fill-[#cfcfcf]" x-show="!timeCopy" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 3.75V0H10.625C9.58945 0 8.75 0.839453 8.75 1.875V13.125C8.75 14.1605 9.58945 15 10.625 15H18.125C19.1605 15 20 14.1605 20 13.125V5H16.2852C15.5625 5 15 4.4375 15 3.75ZM16.25 0V3.75H20L16.25 0ZM7.5 13.75V5H1.875C0.839453 5 0 5.83945 0 6.875V18.125C0 19.1605 0.839453 20 1.875 20H9.375C10.4105 20 11.25 19.1605 11.25 18.125V16.25H10C8.62109 16.25 7.5 15.1289 7.5 13.75Z"/>
+                                </svg> 
+                    </button>
+
+                    <button title="QR Code" class="opt-codigo-qr w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]" x-on:click="$store.comps.qr_code = true, $store.comps.notTouchBgQR = true, $refs.image.src = 'https://shadowmere.akiel.dev/' + proxy.id.toString() + '/qr'">
+                        <svg class="fill-[#303030] dark:fill-[#cfcfcf] " width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_522_872)">
+                                <path d="M0.25 8.75H7.75V1.25H0.25V8.75ZM2.75 3.75H5.25V6.25H2.75V3.75ZM10.25 1.25V8.75H17.75V1.25H10.25ZM15.25 6.25H12.75V3.75H15.25V6.25ZM0.25 18.75H7.75V11.25H0.25V18.75ZM2.75 13.75H5.25V16.25H2.75V13.75ZM16.5 11.25H17.75V16.25H14V15H12.75V18.75H10.25V11.25H14V12.5H16.5V11.25ZM16.5 17.5H17.75V18.75H16.5V17.5ZM14 17.5H15.25V18.75H14V17.5Z"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_522_872">
+                                <rect width="17.5" height="20" fill="white" transform="translate(0.25)"/>
+                                </clipPath>
+                                </defs>
+                                </svg>
+                    </button>
+
+                    <a x-bind:href="'https://shadowmere.akiel.dev/' + proxy.id + '/config'">
+                    <button title="Download" class="opt-descargar w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]">
+                        <svg class="fill-[#303030] dark:fill-[#cfcfcf]" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M18.75 13.75H13.5352L11.7676 15.5176C11.2969 15.9883 10.668 16.25 10 16.25C9.33203 16.25 8.70469 15.99 8.23242 15.5176L6.46484 13.75H1.25C0.559766 13.75 0 14.3098 0 15V18.75C0 19.4402 0.559766 20 1.25 20H18.75C19.4402 20 20 19.4402 20 18.75V15C20 14.3086 19.4414 13.75 18.75 13.75ZM16.875 17.8125C16.3594 17.8125 15.9375 17.3906 15.9375 16.875C15.9375 16.3594 16.3594 15.9375 16.875 15.9375C17.3906 15.9375 17.8125 16.3594 17.8125 16.875C17.8125 17.3906 17.3906 17.8125 16.875 17.8125ZM9.11719 14.6328C9.35938 14.8789 9.67969 15 10 15C10.3203 15 10.6398 14.8779 10.8836 14.6338L15.8836 9.63379C16.3715 9.14551 16.3715 8.35449 15.8836 7.86621C15.3953 7.37793 14.6039 7.37793 14.116 7.86621L11.25 10.7344V1.25C11.25 0.559766 10.6902 0 10 0C9.30859 0 8.75 0.559766 8.75 1.25V10.7344L5.88281 7.86719C5.39492 7.37891 4.60352 7.37891 4.11523 7.86719C3.62734 8.35547 3.62734 9.14648 4.11523 9.63477L9.11719 14.6328Z"/>
+                                </svg>
+                    </button>
+                    </a>
+                    
+                </div>
             </div>
+
             </template>
 
             <div class="buttonPagesWrapper w-full h-auto flex justify-center">
                 <div class="buttonPages w-[328px] h-14 flex items-center justify-between">
-                    <button class="button-previous w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold font-awesome rounded-lg shadow-xl" type="button" x-on:click="pageCounter = 1, selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + countryPagination + '&port=' + portPagination + '&page=' + pageCounter.toString())).json(), count = 1">
+                    <button class="button-first w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold font-awesome rounded-lg shadow-xl" type="button" x-on:click="pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = 1">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f100'] after:hover:-translate-x-[2px] after:hover:transition-all"></div>                        
                     </button>
     
-                    <button class="button-previous w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter > 1 ? pageCounter-- : pageCounter, selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + countryPagination + '&port=' + portPagination + '&page=' + pageCounter.toString())).json(), count = pageCounter">
+                    <button class="button-previous w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter > 1 ? pageCounter-- : pageCounter, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = pageCounter">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f104'] after:hover:-translate-x-[2px] after:hover:transition-all"></div>                                                
                     </button>
     
                     <span class="w-[90px] dark:text-[#cfcfcf] text-center font-semibold text-sm sm:text-base" x-text="count.toString() + ' of ' + totalServersPages($store.comps.proxies.count, 20).toString()"></span>
     
-                    <button class="button-next w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter < totalServersPages($store.comps.proxies.count, 20) ? pageCounter++ : pageCounter, selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + countryPagination + '&port=' + portPagination + '&page=' + pageCounter.toString())).json(), count = pageCounter">
+                    <button class="button-next w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter < totalServersPages($store.comps.proxies.count, 20) ? pageCounter++ : pageCounter, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = pageCounter">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f105'] after:hover:translate-x-[2px] after:hover:transition-all"></div>                        
                     </button>
     
-                    <button class="button-next w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter = totalServersPages($store.comps.proxies.count, 20), selectedCountry === 'UN' ? $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() : $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&location_country_code=' + countryPagination + '&port=' + portPagination + '&page=' + pageCounter.toString())).json(), count = totalServersPages($store.comps.proxies.count, 20)">
+                    <button class="button-last w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter = totalServersPages($store.comps.proxies.count, 20), $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = totalServersPages($store.comps.proxies.count, 20)">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f101'] after:hover:translate-x-[2px] after:hover:transition-all"></div>                                               
                     </button>
                 </div>
