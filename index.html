@@ -356,7 +356,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
             <div class="buttonPagesWrapper w-full h-auto 2xl:hidden flex justify-center">
                 <div class="buttonPages w-[328px] h-14 flex items-center justify-between">
-                    <button class="button-previous w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold font-awesome rounded-lg shadow-xl" type="button" x-on:click="pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = 1">
+                    <button class="button-first w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold font-awesome rounded-lg shadow-xl" type="button" x-on:click="pageCounter = 1, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = 1">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f100'] after:hover:-translate-x-[2px] after:hover:transition-all"></div>                        
                     </button>
     
@@ -366,11 +366,11 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     
                     <span class="w-[90px] dark:text-[#cfcfcf] text-center font-semibold text-sm sm:text-base" x-text="count.toString() + ' of ' + totalServersPages($store.comps.proxies.count, 20).toString()"></span>
     
-                    <button class="button-next w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter < totalServersPages($store.comps.proxies.count, 20) ? pageCounter++ : pageCounter, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), showItemServer = true, count = pageCounter">
+                    <button class="button-next w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter < totalServersPages($store.comps.proxies.count, 10) ? pageCounter++ : pageCounter, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = pageCounter">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f105'] after:hover:translate-x-[2px] after:hover:transition-all"></div>                        
                     </button>
     
-                    <button class="button-next w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter = totalServersPages($store.comps.proxies.count, 20), $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = totalServersPages($store.comps.proxies.count, 20)">
+                    <button class="button-last w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter = totalServersPages($store.comps.proxies.count, 10), $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = totalServersPages($store.comps.proxies.count, 10)">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f101'] after:hover:translate-x-[2px] after:hover:transition-all"></div>                                               
                     </button>
                 </div>
@@ -537,11 +537,11 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     
                     <span class="w-[90px] dark:text-[#cfcfcf] text-center font-semibold text-sm sm:text-base" x-text="count.toString() + ' of ' + totalServersPages($store.comps.proxies.count, 20).toString()"></span>
     
-                    <button class="button-next w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter < totalServersPages($store.comps.proxies.count, 20) ? pageCounter++ : pageCounter, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = pageCounter">
+                    <button class="button-next w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter < totalServersPages($store.comps.proxies.count, 10) ? pageCounter++ : pageCounter, $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = pageCounter">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f105'] after:hover:translate-x-[2px] after:hover:transition-all"></div>                        
                     </button>
     
-                    <button class="button-last w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter = totalServersPages($store.comps.proxies.count, 20), $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = totalServersPages($store.comps.proxies.count, 20)">
+                    <button class="button-last w-12 h-12 bg-[#212121] hover:bg-[#303030] dark:hover:bg-[#303030] dark:bg-[#212121] text-[#cfcfcf] transition-colors flex items-center justify-center shrink-0 font-bold rounded-lg shadow-xl" type="button" x-on:click="pageCounter = totalServersPages($store.comps.proxies.count, 10), $store.comps.proxies = await (await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json(), count = totalServersPages($store.comps.proxies.count, 10)">
                         <div class="w-12 h-12 font-awesome text-xl flex items-center justify-center after:content-['\f101'] after:hover:translate-x-[2px] after:hover:transition-all"></div>                                               
                     </button>
                 </div>
