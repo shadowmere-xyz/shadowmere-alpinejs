@@ -29,7 +29,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     <title>Shadowmere</title>
 </head>
 
-<body class=" overflow-y-scroll bg-[#F8F8F8] dark:bg-[#141414]" x-data="{selectedCountry: 'UN', countryPagination: '', selectedPort: 'Any', portPagination: '', codes: null, ports: null, codeString: null, pageCounter: 1, count: 1, temp: '', atTop: true, loader: true }" x-init="
+<body class=" overflow-y-scroll bg-[#F8F8F8] dark:bg-[#141414]" x-data="{selectedCountry: 'UN', countryPagination: '', selectedPort: 'Any', portPagination: '', codes: null, ports: null, codeString: null, pageCounter: 1, count: 1, temp: '', atTop: true, loader: true, serverAddress: '' }" x-init="
     
     <!-- $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json() -->
     $store.comps.proxies = await(await fetch(endpointURL(pageCounter, portPagination, countryPagination))).json();
@@ -272,11 +272,18 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     </div>
 
     <div class="modal-qr w-full overflow-auto fixed z-[150] left-0 top-0 h-screen bg-black bg-opacity-[0.7] flex flex-col items-center justify-center gap-4" x-on:click.outside="$store.comps.qr_code = false, $store.comps.notTouchBgQR = false" x-show="$store.comps.qr_code">
-        <div class=" w-[328px] h-auto sm:w-[360px] bg-white rounded-lg">
-            <!-- x-on:click.outside="$store.comps.qr_code = false, $store.comps.notTouchBgQR = false" -->
-            <img class="rounded-lg" alt="QR Code for server address" x-ref="image">
+        <div class="w-auto h-auto flex flex-col gap-4 justify-center ">
+            <div class=" w-[328px] h-auto sm:w-[360px] bg-white rounded-lg flex flex-col gap-4">
+                <!-- x-on:click.outside="$store.comps.qr_code = false, $store.comps.notTouchBgQR = false" -->
+                <img class="rounded-lg" alt="QR Code for server address" x-ref="image">
+            </div>
+    
+            <div class=" bg-slate-400 w-[328px] h-auto sm:w-[360px] flex flex-col gap-4 items-center" >
+                <h1 x-text="serverAddress" class="text-white"></h1>
+                <h1 class="text-green-500">Click or tap anywhere on the screen to close it</h1>
+            </div>
         </div>
-        <h1 class="dark:text-white">Click or tap anywhere on the screen to close it</h1>
+        
     </div>
     
     <!-- Este es el container general -->
@@ -499,7 +506,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                                 </svg> 
                     </button>
 
-                    <button title="QR Code" class="opt-codigo-qr w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]" x-on:click="$store.comps.qr_code = true, $store.comps.notTouchBgQR = true, $refs.image.src = 'https://shadowmere.akiel.dev/' + proxy.id.toString() + '/qr'">
+                    <button title="QR Code" class="opt-codigo-qr w-4 h-4 sm:w-10 sm:h-10 rounded-md flex items-center justify-center cursor-pointer hover:bg-[#EBEBEB] dark:hover:bg-[#1B1B1B] active:bg-[#D7D7D7] dark:active:bg-[#111111] transition-colors transition-transform active:scale-[95%]" x-on:click="$store.comps.qr_code = true, $store.comps.notTouchBgQR = true, $refs.image.src = 'https://shadowmere.akiel.dev/' + proxy.id.toString() + '/qr', serverAddress = proxy.url, console.log($refs.urlQR.innerHTMl)">
                         <svg class="fill-[#303030] dark:fill-[#cfcfcf] " width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_522_872)">
                                 <path d="M0.25 8.75H7.75V1.25H0.25V8.75ZM2.75 3.75H5.25V6.25H2.75V3.75ZM10.25 1.25V8.75H17.75V1.25H10.25ZM15.25 6.25H12.75V3.75H15.25V6.25ZM0.25 18.75H7.75V11.25H0.25V18.75ZM2.75 13.75H5.25V16.25H2.75V13.75ZM16.5 11.25H17.75V16.25H14V15H12.75V18.75H10.25V11.25H14V12.5H16.5V11.25ZM16.5 17.5H17.75V18.75H16.5V17.5ZM14 17.5H15.25V18.75H14V17.5Z"/>
