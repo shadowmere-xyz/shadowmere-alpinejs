@@ -914,6 +914,14 @@ html {
   z-index: 10;
 }
 
+.z-\[\] {
+  z-index: ;
+}
+
+.z-\[60\] {
+  z-index: 60;
+}
+
 .col-span-12 {
   grid-column: span 12 / span 12;
 }
@@ -1097,6 +1105,10 @@ html {
   width: fit-content;
 }
 
+.w-\[\] {
+  width: ;
+}
+
 .shrink-0 {
   flex-shrink: 0;
 }
@@ -1263,6 +1275,10 @@ html {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.break-words {
+  overflow-wrap: break-word;
 }
 
 .rounded-md {
@@ -2008,6 +2024,14 @@ html {
 
   .sm\:w-10 {
     width: 2.5rem;
+  }
+
+  .sm\:w-\[328px\] {
+    width: 328px;
+  }
+
+  .sm\:w-auto {
+    width: auto;
   }
 
   .sm\:text-base {

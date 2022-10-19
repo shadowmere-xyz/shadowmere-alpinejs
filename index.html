@@ -63,6 +63,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     <div class="loader-screen w-full h-full top-0 z-[90] bg-white dark:bg-[#141414] fixed flex items-center justify-center " x-show="!darkMode && loader" x-transition>
         <lottie-player src="./others/logo-animation-2.json" background="transparent" speed="1" style="width: 100px; height: 100px;" loop autoplay></lottie-player>
     </div>
+
     <nav class="w-full h-20 z-50 top-0 fixed flex justify-center bg-white dark:bg-[#212121] transition-transform shadow-lg">
         <div class="nav-wrapper container mx-auto dark:bg-[#212121] w-full h-full flex items-center justify-between px-4">
             <svg class="fill-[#303030] dark:fill-[#cfcfcf] w-[200px] h-auto cursor-pointer" x-on:click="$store.comps.listaHome = true, $store.comps.about = false, $store.comps.why = false, $store.comps.menu= 'servers', pageCounter = 1, $store.comps.proxies = await (await fetch('https://shadowmere.akiel.dev/api/proxies/?format=json&is_active=true&page=' + pageCounter.toString())).json(), count = 1, selectedCountry = 'UN'" width="260" height="50" viewBox="0 0 260 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -271,16 +272,18 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
         </div>
     </div>
 
-    <div class="modal-qr w-full overflow-auto fixed z-[150] left-0 top-0 h-screen bg-black bg-opacity-[0.7] flex flex-col items-center justify-center gap-4" x-on:click.outside="$store.comps.qr_code = false, $store.comps.notTouchBgQR = false" x-show="$store.comps.qr_code">
+    <div class="modal-qr w-full overflow-auto fixed z-[60] left-0 top-0 h-screen bg-black bg-opacity-[0.7] flex flex-col items-center justify-center gap-4" x-on:click.outside="$store.comps.qr_code = false, $store.comps.notTouchBgQR = false" x-show="$store.comps.qr_code">
+        
         <div class="w-auto h-auto flex flex-col gap-4 justify-center ">
+            
             <div class=" w-[328px] h-auto sm:w-[360px] bg-white rounded-lg flex flex-col gap-4">
                 <!-- x-on:click.outside="$store.comps.qr_code = false, $store.comps.notTouchBgQR = false" -->
                 <img class="rounded-lg" alt="QR Code for server address" x-ref="image">
             </div>
     
-            <div class=" bg-slate-400 w-[328px] h-auto sm:w-[360px] flex flex-col gap-4 items-center" >
-                <h1 x-text="serverAddress" class="text-white"></h1>
-                <h1 class="text-green-500">Click or tap anywhere on the screen to close it</h1>
+            <div class=" w-[328px] h-auto sm:w-[360px] flex flex-col gap-4 items-center" >
+                <h1 x-text="serverAddress" class=" w-[328px] sm:w-auto text-center text-white break-words"></h1>
+                <h1 class=" text-green-500">Click or tap anywhere on the screen to close it</h1>
             </div>
         </div>
         
@@ -583,7 +586,10 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
             Then, players could store or retrieve objects from it just like a container. In Skyrim, once Shadowmere is finally killed, arrows that have been fired into the horse over the time it has been with the Dragonborn can be recovered.
             Shadowmere apparently reincarnates between eras, potentially changing subspecies of horse, and genders.</p>
             
-
+            <div class=" bg-slate-400 w-[328px] h-auto sm:w-[360px] flex flex-col gap-4 items-center" >
+                <h1 class="text-white ">While surely vastly harder to kill than typical bought horses in the game,</h1>
+                <h1 class="text-green-500">Click or tap anywhere on the screen to close it</h1>
+            </div>
             <!-- Aqui va el contenido del About -->
             
         </div>
