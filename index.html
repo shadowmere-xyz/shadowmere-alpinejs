@@ -271,15 +271,14 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
         </div>
     </div>
 
-    <div class="modal-qr w-full overflow-auto fixed z-[150] left-0 top-0 h-screen bg-black bg-opacity-[0.7] flex flex-col items-center justify-center gap-4" x-on:click.outside="$store.comps.qr_code = false, $store.comps.notTouchBgQR = false" x-show="$store.comps.qr_code">
+    <div class="modal-qr w-full fixed z-[200] left-0 top-0 h-screen bg-black bg-opacity-[0.7] flex flex-col items-center justify-center gap-4" x-on:click.outside="$store.comps.qr_code = false, $store.comps.notTouchBgQR = false" x-show="$store.comps.qr_code">
         <div class="w-auto h-auto flex flex-col gap-4 justify-center ">
             <div class=" w-[328px] h-auto sm:w-[360px] bg-white rounded-lg flex flex-col gap-4">
                 <!-- x-on:click.outside="$store.comps.qr_code = false, $store.comps.notTouchBgQR = false" -->
-                <img class="rounded-lg" alt="QR Code for server address" x-ref="image">
+                <img class=" rounded-lg" alt="QR Code for server address" x-ref="image">
             </div>
-    
-            <div class=" bg-slate-400 w-[328px] h-auto sm:w-[360px] flex flex-col gap-4 items-center" >
-                <h1 x-text="serverAddress" class="text-white"></h1>
+            <div class=" w-[328px] h-auto sm:w-[360px] flex flex-col gap-4 items-center" >
+                <h1 x-text="serverAddress" class=" w-[328px] sm:w-auto text-center text-white break-words"></h1>
                 <h1 class="text-green-500">Click or tap anywhere on the screen to close it</h1>
             </div>
         </div>
