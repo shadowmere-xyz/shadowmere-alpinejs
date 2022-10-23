@@ -478,7 +478,8 @@ select {
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
   padding-right: 2.5rem;
-  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+          color-adjust: exact;
 }
 
 [multiple] {
@@ -487,14 +488,16 @@ select {
   background-repeat: unset;
   background-size: initial;
   padding-right: 0.75rem;
-  print-color-adjust: unset;
+  -webkit-print-color-adjust: unset;
+          color-adjust: unset;
 }
 
 [type='checkbox'],[type='radio'] {
   -webkit-appearance: none;
           appearance: none;
   padding: 0;
-  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+          color-adjust: exact;
   display: inline-block;
   vertical-align: middle;
   background-origin: border-box;
@@ -577,7 +580,6 @@ select {
 }
 
 [type='file']:focus {
-  outline: 1px solid ButtonText;
   outline: 1px auto -webkit-focus-ring-color;
 }
 
@@ -831,7 +833,8 @@ html {
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
   padding-right: 2.5rem;
-  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+          color-adjust: exact;
 }
 
 .pointer-events-none {
@@ -906,8 +909,8 @@ html {
   z-index: 50;
 }
 
-.z-\[150\] {
-  z-index: 150;
+.z-\[200\] {
+  z-index: 200;
 }
 
 .z-10 {
@@ -1237,10 +1240,6 @@ html {
 
 .gap-0 {
   gap: 0px;
-}
-
-.overflow-auto {
-  overflow: auto;
 }
 
 .overflow-hidden {
@@ -2008,6 +2007,10 @@ html {
 
   .sm\:w-10 {
     width: 2.5rem;
+  }
+
+  .sm\:w-auto {
+    width: auto;
   }
 
   .sm\:text-base {
