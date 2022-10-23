@@ -917,6 +917,10 @@ html {
   z-index: 10;
 }
 
+.z-\[60\] {
+  z-index: 60;
+}
+
 .col-span-12 {
   grid-column: span 12 / span 12;
 }
@@ -1242,6 +1246,10 @@ html {
   gap: 0px;
 }
 
+.overflow-auto {
+  overflow: auto;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1262,6 +1270,10 @@ html {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.break-words {
+  overflow-wrap: break-word;
 }
 
 .rounded-md {
