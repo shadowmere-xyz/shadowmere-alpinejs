@@ -921,6 +921,10 @@ html {
   z-index: 60;
 }
 
+.z-\[150\] {
+  z-index: 150;
+}
+
 .col-span-12 {
   grid-column: span 12 / span 12;
 }
