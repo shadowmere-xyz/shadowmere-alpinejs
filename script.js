@@ -67,7 +67,7 @@ document.addEventListener("alpine:init", () => {
 		why: false,
 		support: false,
 		activeTab: 'home',
-    
+		generalProxies: null,
 	});
 });
 

@@ -478,7 +478,8 @@ select {
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
   padding-right: 2.5rem;
-  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+          color-adjust: exact;
 }
 
 [multiple] {
@@ -487,14 +488,16 @@ select {
   background-repeat: unset;
   background-size: initial;
   padding-right: 0.75rem;
-  print-color-adjust: unset;
+  -webkit-print-color-adjust: unset;
+          color-adjust: unset;
 }
 
 [type='checkbox'],[type='radio'] {
   -webkit-appearance: none;
           appearance: none;
   padding: 0;
-  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+          color-adjust: exact;
   display: inline-block;
   vertical-align: middle;
   background-origin: border-box;
@@ -577,7 +580,6 @@ select {
 }
 
 [type='file']:focus {
-  outline: 1px solid ButtonText;
   outline: 1px auto -webkit-focus-ring-color;
 }
 
@@ -831,7 +833,8 @@ html {
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
   padding-right: 2.5rem;
-  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+          color-adjust: exact;
 }
 
 .pointer-events-none {
@@ -906,24 +909,12 @@ html {
   z-index: 50;
 }
 
-.z-\[150\] {
-  z-index: 150;
+.z-\[200\] {
+  z-index: 200;
 }
 
 .z-10 {
   z-index: 10;
-}
-
-.z-\[\] {
-  z-index: ;
-}
-
-.z-\[60\] {
-  z-index: 60;
-}
-
-.z-\[200\] {
-  z-index: 200;
 }
 
 .col-span-12 {
@@ -1109,10 +1100,6 @@ html {
   width: fit-content;
 }
 
-.w-\[\] {
-  width: ;
-}
-
 .shrink-0 {
   flex-shrink: 0;
 }
@@ -1255,10 +1242,6 @@ html {
   gap: 0px;
 }
 
-.overflow-auto {
-  overflow: auto;
-}
-
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1361,11 +1344,6 @@ html {
 .bg-black {
   --tw-bg-opacity: 1;
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
-}
-
-.bg-slate-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
 
 .bg-\[\#212121\] {
@@ -2026,16 +2004,12 @@ html {
     width: 360px;
   }
 
-  .sm\:w-10 {
-    width: 2.5rem;
-  }
-
-  .sm\:w-\[328px\] {
-    width: 328px;
-  }
-
   .sm\:w-auto {
     width: auto;
+  }
+
+  .sm\:w-10 {
+    width: 2.5rem;
   }
 
   .sm\:text-base {
