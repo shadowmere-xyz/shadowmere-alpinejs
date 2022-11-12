@@ -1051,10 +1051,6 @@ html {
   height: 640px;
 }
 
-.h-\[\] {
-  height: ;
-}
-
 .w-full {
   width: 100%;
 }
@@ -1673,16 +1669,6 @@ html {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.content-\[\\\'\\\\f00c\\\'\] {
-  --tw-content: \'\\f00c\';
-  content: var(--tw-content);
-}
-
-.content-\[\\\'\\\\f0c5\\\'\] {
-  --tw-content: \'\\f0c5\';
-  content: var(--tw-content);
-}
-
 @font-face {
   font-family: "Twemoji";
 
@@ -1805,26 +1791,6 @@ html {
 
 .after\:content-\[\'\\f101\'\]::after {
   --tw-content: '\f101';
-  content: var(--tw-content);
-}
-
-.after\:content-\[\\\'\\\\f00c\\\'\]::after {
-  --tw-content: \'\\f00c\';
-  content: var(--tw-content);
-}
-
-.after\:content-\[\\\'\\\\f0c5\\\'\]::after {
-  --tw-content: \'\\f0c5\';
-  content: var(--tw-content);
-}
-
-.after\:content-\[\\\'\\a\\\'\]::after {
-  --tw-content: \'\a\';
-  content: var(--tw-content);
-}
-
-.after\:content-\[\'\\f0c5\'\]::after {
-  --tw-content: '\f0c5';
   content: var(--tw-content);
 }
 
