@@ -66,8 +66,8 @@ document.addEventListener("alpine:init", () => {
 		listaHome: true,
 		why: false,
 		support: false,
-		activeTab: 'home',
-		generalProxies: null,
+		activeTab: 'sub',
+    
 	});
 });
 
