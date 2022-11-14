@@ -16,7 +16,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     <link rel="icon" type="image/svg+xml" href="./imgs/logo.svg" sizes="any"/>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KQ4KMVJEXY"></script>
@@ -25,6 +25,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="https://unpkg.com/@shaun/alpinejs-router@1.x.x/dist/cdn.min.js" defer></script>
 
     <title>Shadowmere</title>
 </head>
@@ -47,13 +48,14 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
         'port': 'Any',
     })
     
-    <!-- console.log(ports[4]) -->
+    console.log(windows.location.href)
 
     moment().format('MMMM Do YYYY, h:mm:ss a')
     
     $store.comps.menu = 'servers'
     
     loader = false
+
 
 " x-bind:class="($store.comps.notTouchBgCountries || $store.comps.notTouchBgServers || $store.comps.notTouchBgMenuMobile || $store.comps.notTouchBgQR) && 'pointer-events-none relative overflow-hidden' ">
     <div class="loader-screen w-full h-full top-0 z-[90] bg-white dark:bg-[#141414] fixed flex items-center justify-center" x-show="darkMode && loader" x-transition>
@@ -158,7 +160,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
                         x-on:click="$store.comps.activeTab = 'about'" x-bind:class="$store.comps.activeTab === 'about' && 'bg-[#EBEBEB] dark:bg-[#1B1B1B]'">About</button> 
                     
                     <button class=" dark:text-[#cfcfcf] font-medium w-auto h-12 flex items-center justify-center px-5 rounded-md hover:bg-[#EBEBEB] active:bg-[#D7D7D7] dark:hover:bg-[#1B1B1B] dark:active:bg-[#111111] cursor-pointer transition-colors transition-transform active:scale-[99%]"
-                        x-on:click="$store.comps.activeTab = 'home'" x-bind:class="$store.comps.activeTab === 'home' && 'bg-[#EBEBEB] dark:bg-[#1B1B1B]'">Home</button>
+                        x-on:click="$store.comps.activeTab = 'home', $router.push('/home')" x-bind:class="$store.comps.activeTab === 'home' && 'bg-[#EBEBEB] dark:bg-[#1B1B1B]'">Home</button>
                 </div>
             </div>
         </div>
@@ -371,7 +373,9 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
 
 
-        <div id="cuerpo" class="lista-servers-vpns col-span-12 xl:col-span-9 w-full h-full flex flex-col gap-4" x-show="$store.comps.activeTab === 'home'" x-init="showItemServer = true">
+        <div id="cuerpo" class="lista-servers-vpns col-span-12 xl:col-span-9 w-full h-full flex flex-col gap-4" x-show="$store.comps.activeTab === 'home'" x-init="
+        showItemServer = true
+        ">
 
             <div class="buttonPagesWrapper w-full h-auto 2xl:hidden flex justify-center">
                 <div class="buttonPages w-[328px] h-14 flex items-center justify-between">

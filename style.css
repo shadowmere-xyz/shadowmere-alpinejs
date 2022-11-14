@@ -478,7 +478,8 @@ select {
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
   padding-right: 2.5rem;
-  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+          color-adjust: exact;
 }
 
 [multiple] {
@@ -487,14 +488,16 @@ select {
   background-repeat: unset;
   background-size: initial;
   padding-right: 0.75rem;
-  print-color-adjust: unset;
+  -webkit-print-color-adjust: unset;
+          color-adjust: unset;
 }
 
 [type='checkbox'],[type='radio'] {
   -webkit-appearance: none;
           appearance: none;
   padding: 0;
-  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+          color-adjust: exact;
   display: inline-block;
   vertical-align: middle;
   background-origin: border-box;
@@ -577,7 +580,6 @@ select {
 }
 
 [type='file']:focus {
-  outline: 1px solid ButtonText;
   outline: 1px auto -webkit-focus-ring-color;
 }
 
@@ -831,7 +833,8 @@ html {
   background-repeat: no-repeat;
   background-size: 1.5em 1.5em;
   padding-right: 2.5rem;
-  print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
+          color-adjust: exact;
 }
 
 .pointer-events-none {
@@ -1596,16 +1599,6 @@ html {
   color: rgb(87 158 255 / var(--tw-text-opacity));
 }
 
-.text-red-600 {
-  --tw-text-opacity: 1;
-  color: rgb(220 38 38 / var(--tw-text-opacity));
-}
-
-.text-blue-600 {
-  --tw-text-opacity: 1;
-  color: rgb(37 99 235 / var(--tw-text-opacity));
-}
-
 .accent-\[\#303030\] {
   accent-color: #303030;
 }
@@ -1677,11 +1670,6 @@ html {
 
 .ease-in-out {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.content-\[\\\'Copied\!\\\'\] {
-  --tw-content: \'Copied!\';
-  content: var(--tw-content);
 }
 
 @font-face {
@@ -1784,18 +1772,6 @@ html {
   line-height: 1.25rem;
 }
 
-.after\:text-\[\#cfcfcf\]::after {
-  content: var(--tw-content);
-  --tw-text-opacity: 1;
-  color: rgb(207 207 207 / var(--tw-text-opacity));
-}
-
-.after\:text-\[\#7a7a7a\]::after {
-  content: var(--tw-content);
-  --tw-text-opacity: 1;
-  color: rgb(122 122 122 / var(--tw-text-opacity));
-}
-
 .after\:text-\[\#c1c1c1\]::after {
   content: var(--tw-content);
   --tw-text-opacity: 1;
@@ -1829,31 +1805,6 @@ html {
 
 .after\:content-\[\\\'Copied\!\\\'\]::after {
   --tw-content: \'Copied!\';
-  content: var(--tw-content);
-}
-
-.after\:content-\[\\\'CopyLink\\\'\]::after {
-  --tw-content: \'CopyLink\';
-  content: var(--tw-content);
-}
-
-.after\:content-\[\\\'Copy\\_Link\\\'\]::after {
-  --tw-content: \'Copy_Link\';
-  content: var(--tw-content);
-}
-
-.after\:content-\[\'Copied\!\'\]::after {
-  --tw-content: 'Copied!';
-  content: var(--tw-content);
-}
-
-.after\:content-\[\'CopyLink\'\]::after {
-  --tw-content: 'CopyLink';
-  content: var(--tw-content);
-}
-
-.after\:content-\[\\\'\\\\\\f0c5\\\'\]::after {
-  --tw-content: \'\\\f0c5\';
   content: var(--tw-content);
 }
 
