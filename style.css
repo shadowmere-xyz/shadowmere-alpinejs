@@ -1562,6 +1562,10 @@ html {
   font-weight: 700;
 }
 
+.font-light {
+  font-weight: 300;
+}
+
 .leading-\[1\.10rem\] {
   line-height: 1.10rem;
 }
@@ -1604,6 +1608,11 @@ html {
 .text-blue-600 {
   --tw-text-opacity: 1;
   color: rgb(37 99 235 / var(--tw-text-opacity));
+}
+
+.text-\[\#c1c1c1\] {
+  --tw-text-opacity: 1;
+  color: rgb(193 193 193 / var(--tw-text-opacity));
 }
 
 .accent-\[\#303030\] {
@@ -1681,6 +1690,11 @@ html {
 
 .content-\[\\\'Copied\!\\\'\] {
   --tw-content: \'Copied!\';
+  content: var(--tw-content);
+}
+
+.content-\[\\\'\\\\f0c5\\\'\] {
+  --tw-content: \'\\f0c5\';
   content: var(--tw-content);
 }
 
@@ -1862,6 +1876,16 @@ html {
   content: var(--tw-content);
 }
 
+.after\:content-\[\\\'Copied\\_to\|clipboard\!\\\'\]::after {
+  --tw-content: \'Copied_to|clipboard!\';
+  content: var(--tw-content);
+}
+
+.after\:content-\[\\\'Copied\\_to\\_clipboard\!\\\'\]::after {
+  --tw-content: \'Copied_to_clipboard!\';
+  content: var(--tw-content);
+}
+
 .hover\:-translate-y-\[2px\]:hover {
   --tw-translate-y: -2px;
   -webkit-transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -2035,6 +2059,11 @@ html {
 .dark .dark\:text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.dark .dark\:text-\[\#7a7a7a\] {
+  --tw-text-opacity: 1;
+  color: rgb(122 122 122 / var(--tw-text-opacity));
 }
 
 .dark .dark\:accent-\[\#cfcfcf\] {
