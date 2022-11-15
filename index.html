@@ -5,7 +5,7 @@
 <html lang="en" x-data="{ darkMode: JSON.parse(localStorage.getItem('darkMode')) }" x-cloak x-init="
 
 
-$watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value))) 
+$watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value))) 
 
 " :class="{'dark': darkMode === true}">
 
@@ -530,7 +530,7 @@ $watch('darkMode', value=> localStorage.setItem('darkMode', JSON.stringify(value
 
             <h1 class="text-2xl font-bold" >Server list subscription</h1>
             <!-- Aqui va el contenido del About -->
-            <p>Some applications like <a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks" class="text-[#579eff] font-bold after:content-['\f08e'] hover:text-[#467ecc] transition-colors after:pl-1 after:font-awesome after:text-sm">Shadowsocks for Android</a> allow users to subscribe to a list of servers. You can subscribe to Shadowmere's using this link: <span x-on:click="navigator.clipboard.writeText('https://shadowmere.akiel.dev/api/sub'), setTimeout(() => { copyLink = false }, 1000), copyLink = true" class=" text-[#579eff] cursor-pointer font-bold hover:text-[#467ecc] transition-colors after:pl-1 dark:after:text-[#7a7a7a] after:text-[#c1c1c1] after:font-awesome after:text-sm " x-bind:class=" copyLink ? 'after:content-[\'Copied!\']' : 'after:content-[\'\\f0c5\']' " >https://shadowmere.akiel.dev/api/sub</span></p>
+            <p>Some applications like <a href="https://play.google.com/store/apps/details?id=com.github.shadowsocks" class="text-[#579eff] font-bold after:content-['\f08e'] hover:text-[#467ecc] transition-colors after:pl-1 after:font-awesome after:text-sm">Shadowsocks for Android</a> allow users to subscribe to a list of servers. You can subscribe to Shadowmere's using this link: <span x-on:click="navigator.clipboard.writeText('https://shadowmere.akiel.dev/api/sub'), setTimeout(() => { copyLink = false }, 1000), copyLink = true" class=" group text-[#579eff] cursor-pointer font-bold hover:text-[#467ecc] transition-colors after:pl-1 dark:after:text-[#7a7a7a] after:text-[#c1c1c1] after:font-awesome after:text-sm ">https://shadowmere.akiel.dev/api/sub <span class="font-semibold text-[#c1c1c1] dark:text-[#7a7a7a]" x-show="copyLink">Copied to Clipboard!</span><span class="font-awesome group:text-[#579eff] group:hover:text-[#467ecc] " x-show="!copyLink">&#xf0c5;</span></span></p>
             <h2 class="font-bold">Tutorial video</h2>
             <iframe class="w-full h-[640px] rounded-lg" src="https://www.youtube.com/embed/YvQjOExb4no" title="Set up shadowsocks subscription from Shadowmere" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             <!-- <p>This website is only a list of tunnels collected all around internet. We do NOT provide or maintain any of these tunnels. <span class="bg-red-600 text-white">Use them at your own risk.</span></p> -->
