@@ -1,3 +1,8 @@
+import Alpine from 'alpinejs';
+
+window.Alpine = Alpine;
+Alpine.start();
+
 window.dataLayer = window.dataLayer || [];
 
 function gtag() {
@@ -66,14 +71,18 @@ document.addEventListener("alpine:init", () => {
 		listaHome: true,
 		why: false,
 		support: false,
-		activeTab: 'sub',
+		activeTab: 'home',
     
 	});
 });
 
+function urlRouter(tab) {
+	
+}
+
 function copyToClickBoard(content, flagSuccess) {
 	navigator.clipboard.writeText(content);
-}
+};
 
 const totalServersPages = (totalServers, entriesLimit) => {
 	if (totalServers % entriesLimit == 0) {
