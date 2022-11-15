@@ -71,14 +71,10 @@ document.addEventListener("alpine:init", () => {
 		listaHome: true,
 		why: false,
 		support: false,
-		activeTab: 'home',
+		activeTab: 'sub',
     
 	});
 });
-
-function urlRouter(tab) {
-	
-}
 
 function copyToClickBoard(content, flagSuccess) {
 	navigator.clipboard.writeText(content);
